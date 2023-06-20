@@ -1,14 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 12:30:42 by wmari             #+#    #+#             */
-/*   Updated: 2023/06/20 12:30:52 by wmari            ###   ########.fr       */
+/*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
+/*   Updated: 2023/06/20 12:35:50 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef CUB3D_H
+# define CUBE3D_H
 
+# include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
+# include <math.h>
+
+#endif
