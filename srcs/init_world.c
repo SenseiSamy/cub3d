@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:21:01 by wmari             #+#    #+#             */
-/*   Updated: 2023/06/20 14:19:43 by wmari            ###   ########.fr       */
+/*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
+/*   Updated: 2023/06/20 14:24:05 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char **argv, char **envp)
+void	mlx_not_working(char *env)
 {
-	
-	return (0);
+	if (!env)
+	{
+		printf("Error\nMLX not working\n");
+		exit(0);
+	}
 }
+

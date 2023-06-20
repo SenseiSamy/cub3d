@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/06/20 14:00:47 by wmari            ###   ########.fr       */
+/*   Updated: 2023/06/20 14:55:43 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,19 @@ typedef struct	s_world
 	t_sprite	westWall;
 	
 }				t_world;
+
+void	mlx_not_working(char *env);
+
+/*GET_NEXT_LINE*/
+int		get_next_line(int fd, char **line);
+char	*fill_saved(int fd, char *saved, int *nbread, int buffer_size);
+int		check_saved(char *saved);
+char	*new_line(char *saved);
+char	*clean_saved(char *saved);
+char	*saved_append(char *saved, char *buf);
+void	fill_with_save(char *nsaved, char *saved, char *buf);
+void	fill_with_buf(char *nsaved, char *buf);
+size_t	ft_strlen(const char *s);
+char	*create_new_saved(char *saved, char *buf);
+
 #endif
