@@ -6,12 +6,15 @@
 #    By: wmari <wmari@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/06/20 13:24:32 by wmari            ###   ########.fr        #
+#    Updated: 2023/06/20 15:02:41 by wmari            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	Cub3d
 
-SRCS	=	$(addprefix srcs/, main.c
-			)
+SRCS	=	$(addprefix srcs/,
+				main.c
+				get_next_line.c
+				init_world.c
+				get_next_line_utils.c)
 

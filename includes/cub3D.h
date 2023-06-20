@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/06/20 14:55:43 by wmari            ###   ########.fr       */
+/*   Updated: 2023/06/20 15:08:49 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 typedef struct	s_sprite
 {
-	int		direction;
 	char	*path_to_file;
+	int		x;
+	int		y;
 }				t_sprite;
 
 typedef struct	s_world
@@ -36,7 +37,8 @@ typedef struct	s_world
 	t_sprite	southWall;
 	t_sprite	eastWall;
 	t_sprite	westWall;
-	
+	int			width;
+	int			height;
 }				t_world;
 
 void	mlx_not_working(char *env);
