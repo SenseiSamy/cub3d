@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_world.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/06/21 16:08:45 by wmari            ###   ########.fr       */
+/*   Created: 2020/12/02 12:16:18 by wmari             #+#    #+#             */
+/*   Updated: 2022/12/22 10:59:30 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	mlx_not_working(char *env)
+t_libftlist	*ft_libftlstlast(t_libftlist *lst)
 {
-	if (!env)
-	{
-		printf("Error\nMLX not working\n");
-		exit(0);
-	}
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
-
-int		path_invalid(char *path)
-{
-	int i;
-
-	i = 0;
-	while (path[i])
-		i++;
-	if (ft_strncmp(&path[i - 4], ".cub", 5) || (!path[i - 5] || path[i - 5] == "/"))
-		return (1);
-	return (0);
-}
-
-int		init_world(char **argv, char **envp)
-{
-	mlx_not_working(envp[0]);
-	if (path_invalid(argv[1]))
-		
-}
-

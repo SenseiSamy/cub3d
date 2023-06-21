@@ -6,16 +6,17 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/06/20 15:08:49 by wmari            ###   ########.fr       */
+/*   Updated: 2023/06/21 16:05:00 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUBE3D_H
 
-# include "minilibx-linux/mlx.h"
-# include "minilibx-linux/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include <math.h>
+# include "../srcs/libft/libft.h"
 
 #define NORTH	1
 #define SOUTH	2
