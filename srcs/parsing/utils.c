@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@42.student.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 11:00:49 by wmari             #+#    #+#             */
-/*   Updated: 2021/10/28 12:28:41 by wmari            ###   ########.fr       */
+/*   Created: 2023/06/24 17:54:10 by snaji             #+#    #+#             */
+/*   Updated: 2023/06/24 17:58:18 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3D.h"
 
-void	*ft_memset(void *dest, int c, size_t len)
+t_sprite	open_sprite(char *path)
 {
-	unsigned char	*ptr;
-
-	ptr = (unsigned char *)dest;
-	while (len-- > 0)
-		*ptr++ = (unsigned char)c;
-	return (dest);
+	t_sprite
 }
