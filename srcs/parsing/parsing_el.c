@@ -6,30 +6,32 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 14:21:26 by snaji             #+#    #+#             */
-/*   Updated: 2023/06/25 20:28:34 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/08 18:14:00 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool is_elem(char *line)
+bool	is_elem(char *line)
 {
-	const char *ids[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
-	int i;
+	const char	*ids[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+	int			i;
 
 	i = 0;
+	while (*line == ' ')
+		++line;
 	while (ids[i])
 	{
-		if (ft_strnstr(line, ids[i], ft_strlen(line)) != NULL)
+		if (ft_strncmp(line, ids[i], ft_strlen(ids[i])) == 0)
 			return (true);
 		++i;
 	}
 	return (false);
 }
 
-int set_elem(t_world *world, char *line)
+int	set_elem(t_world *world, char *line)
 {
-	char **split;
+	char	**split;
 
 	split = ft_split(line, ' ');
 	if (split == NULL)
@@ -50,7 +52,8 @@ int set_elem(t_world *world, char *line)
 		world->ceiling_color = get_color(split[1]);
 	else
 		return (ft_dprintf(2, "Error\nFailed to get element in this line: "
-			"'%s'\n", line), EXIT_FAILURE);
+				"'%s'\n", line), ft_freearray((void **)split), EXIT_FAILURE);
+	ft_freearray((void **)split);
 	return (EXIT_SUCCESS);
 }
 
@@ -73,14 +76,14 @@ int	verif_elem(t_world *world)
 	return (EXIT_FAILURE);
 }
 
-int read_elem(t_world *world, int fd)
+int	read_elem(t_world *world, int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		line[ft_strlen(line) - 1] = 0;
+		ft_strrepl(line, '\n', '\0');
 		if (is_elem(line))
 		{
 			if (set_elem(world, line) == EXIT_FAILURE)
@@ -90,14 +93,13 @@ int read_elem(t_world *world, int fd)
 			break ;
 		else if (line[0] != 0)
 			return (ft_dprintf(2, "Error\nInvalid line : %s\n", line),
-			free(line), EXIT_FAILURE);
+				free(line), EXIT_FAILURE);
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (verif_elem(world) == EXIT_FAILURE)
-		return (free(line), EXIT_FAILURE);
+		return (free_world(world), free(line), EXIT_FAILURE);
 	if (read_map(world, fd, line) == EXIT_FAILURE)
-		return (free(line), EXIT_FAILURE);
-	free(line);
+		return (free_world(world), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

@@ -6,15 +6,15 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 18:02:06 by snaji             #+#    #+#             */
-/*   Updated: 2023/06/25 19:57:36 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/08 17:25:17 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int parse(t_world *world, char *file_name)
+int	parse(t_world *world, char *file_name)
 {
-	int fd;
+	int	fd;
 
 	fd = open_file(file_name);
 	if (fd == -1)

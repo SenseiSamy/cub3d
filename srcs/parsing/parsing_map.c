@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:54:16 by snaji             #+#    #+#             */
-/*   Updated: 2023/06/25 20:39:18 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/08 18:07:59 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**convert_map(t_list *map_list)
 	t_list	*ptr;
 	int		i;
 
-	map = malloc(ft_lstsize(map_list) * sizeof (char *));
+	map = ft_calloc(ft_lstsize(map_list) + 1, sizeof (char *));
 	if (map == NULL)
 		return (ft_dprintf(2, "Error\nMalloc failed\n"), NULL);
 	ptr = map_list;
@@ -59,9 +59,10 @@ int	read_map(t_world *world, int fd, char *line)
 	map = NULL;
 	while (line != NULL)
 	{
-		line[ft_strlen(line) - 1] = 0;
+		ft_strrepl(line, '\n', '\0');
 		if (is_map(line) == false)
-			return (ft_dprintf(2, "Error\nInvalid map\n"), EXIT_FAILURE);
+			return (ft_dprintf(2, "Error\nInvalid character in map\n"),
+				EXIT_FAILURE);
 		tmp = ft_lstnew(line);
 		if (tmp == NULL)
 			return (ft_dprintf(2, "Error\nMalloc failed\n"), EXIT_FAILURE);

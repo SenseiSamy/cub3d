@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrepl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:21:01 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/08 18:17:19 by snaji            ###   ########.fr       */
+/*   Created: 2023/07/08 16:58:04 by snaji             #+#    #+#             */
+/*   Updated: 2023/07/08 17:02:12 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include <stddef.h>
 
-int	main(int argc, char **argv, char **envp)
+int	ft_strrepl(char *str, char old, char new)
 {
-	t_world	world;
+	int	i;
+	int	n;
 
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	ft_bzero(&world, sizeof (world));
-	world.mlx = mlx_init();
-	if (parse(&world, "maps/test.cub") == EXIT_FAILURE)
-		return (1);
-	free_world(&world);
-	return (0);
+	if (str == NULL)
+		return (-1);
+	i = 0;
+	n = 0;
+	while (str[i])
+	{
+		if (str[i] == old)
+		{
+			str[i] = new;
+			++n;
+		}
+		++i;
+	}
+	return (n);
 }

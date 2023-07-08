@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 INCLUDE = headers/
 SRCS = 	srcs/ctype/ft_isalnum.c \
@@ -55,6 +55,7 @@ SRCS = 	srcs/ctype/ft_isalnum.c \
 		srcs/utils/ft_strjoin.c \
 		srcs/utils/ft_strmapi.c \
 		srcs/utils/ft_strmjoin.c \
+		srcs/utils/ft_strrepl.c \
 		srcs/utils/ft_strtrim.c \
 		srcs/utils/ft_substr.c \
 		srcs/utils/get_next_line.c \

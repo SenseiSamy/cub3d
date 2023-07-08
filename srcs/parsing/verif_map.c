@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 18:21:57 by snaji             #+#    #+#             */
-/*   Updated: 2023/06/25 20:32:22 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/08 18:10:42 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	get_start_pos(char **map, int *x, int *y)
 	int	j;
 
 	i = 0;
-	*x = -1;
-	*y = -1;
 	while (map[i])
 	{
 		j = 0;
@@ -43,15 +41,15 @@ int	get_start_pos(char **map, int *x, int *y)
 	return (ft_dprintf(2, "Error\nNo start position\n"), EXIT_FAILURE);
 }
 
-int	check_walls_rec(int x, int y, char **map)
+int	check_walls_rec(int y, int x, char **map)
 {
-	if (x < 0 || y < 0 || map[x][y] == 0 || map[x][y] == ' ')
+	if (y < 0 || x < 0 || map[y] == NULL || map[y][x] == 0 || map[y][x] == ' ')
 		return (1);
-	if (map[x][y] == '1' || map[x][y] == '3')
+	if (map[y][x] == '1' || map[y][x] == '3')
 		return (0);
-	map[x][y] = '3';
-	return (check_walls_rec(x + 1, y, map) + check_walls_rec(x - 1, y, map)
-		+ check_walls_rec(x, y + 1, map) + check_walls_rec(x, y - 1, map));
+	map[y][x] = '3';
+	return (check_walls_rec(y + 1, x, map) + check_walls_rec(y - 1, x, map)
+		+ check_walls_rec(y, x + 1, map) + check_walls_rec(y, x - 1, map));
 }
 
 int	check_walls(char **map)
@@ -65,7 +63,7 @@ int	check_walls(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' && check_walls_rec(i, j, map) == 1)
+			if (map[i][j] == '0' && check_walls_rec(i, j, map) >= 1)
 				return (ft_dprintf(2, "Error\nMap not surrounded by walls\n"),
 					EXIT_FAILURE);
 			++j;
@@ -74,13 +72,7 @@ int	check_walls(char **map)
 	}
 	i = 0;
 	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-			if (map[i][j++] == '3')
-				map[i][j - 1] = '0';
-		++i;
-	}
+		ft_strrepl(map[i++], '3', '0');
 	return (EXIT_SUCCESS);
 }
 
@@ -90,6 +82,8 @@ int	verif_map(char **map)
 	int		y;
 	char	c;
 
+	x = -1;
+	y = -1;
 	if (get_start_pos(map, &x, &y) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	c = map[x][y];
