@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 14:21:26 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/08 18:14:00 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/10 21:48:50 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ int	set_elem(t_world *world, char *line)
 
 int	verif_elem(t_world *world)
 {
-	if (world->northwall.sprite == NULL)
+	if (world->northwall.img == NULL)
 		ft_dprintf(2, "Error\nFailed to open north wall texture\n");
-	else if (world->southwall.sprite == NULL)
+	else if (world->southwall.img == NULL)
 		ft_dprintf(2, "Error\nFailed to open south wall texture\n");
-	else if (world->westwall.sprite == NULL)
+	else if (world->westwall.img == NULL)
 		ft_dprintf(2, "Error\nFailed to open west wall texture\n");
-	else if (world->eastwall.sprite == NULL)
+	else if (world->eastwall.img == NULL)
 		ft_dprintf(2, "Error\nFailed to open east wall texture\n");
 	else if (world->floor_color == -1)
 		ft_dprintf(2, "Error\nFailed to get the floor color\n");
