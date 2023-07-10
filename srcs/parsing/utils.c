@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:54:10 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/08 18:22:05 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/10 16:26:59 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_world(t_world *world)
 		mlx_destroy_image(world->mlx, world->eastwall.sprite);
 	if (world->map)
 		ft_freearray((void **)world->map);
+	if (world->mlx_win)
+		mlx_destroy_window(world->mlx, world->mlx_win);
 	if (world->mlx)
 	{
 		mlx_destroy_display(world->mlx);

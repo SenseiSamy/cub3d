@@ -6,7 +6,7 @@
 #    By: snaji <snaji@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/06/25 20:04:30 by snaji            ###   ########.fr        #
+#    Updated: 2023/07/10 16:47:21 by snaji            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,9 @@ MLX 	= minilibx-linux
 INCLUDE	= -I includes -I libft/headers -I $(MLX)
 LIB		= -L libft -L $(MLX) -lft -lmlx_Linux -lm -lXext -lX11 -lz
 SRCS	= srcs/main.c\
+		srcs/init_world.c\
+		srcs/mlx_hooks.c\
+		srcs/utils.c\
 		srcs/parsing/parsing_map.c\
 		srcs/parsing/errors.c\
 		srcs/parsing/parsing_el.c\
