@@ -1,7 +1,7 @@
- NO ./test.xpm
- SO ./test.xpm
- WE ./test.xpm
- EA ./test.xpm
+ NO ./minecraft_stone.xpm
+ SO ./minecraft_stone.xpm
+ WE ./minecraft_stone.xpm
+ EA ./minecraft_stone.xpm
 
  F 220,100,0
  C 225,30,0
