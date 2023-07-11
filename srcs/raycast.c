@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:28:21 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/11 16:19:16 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/11 18:04:51 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_raycast
 
 void	init_values(t_raycast *r, t_world *world, int x)
 {
-	r->camera_x = 2 * x / (double)WINDOW_H - 1;
+	r->camera_x = 2 * x / (double)WINDOW_W - 1;
 	r->raydir.x = world->dir.x + world->plane.x * r->camera_x;
 	r->raydir.y = world->dir.y + world->plane.y * r->camera_x;
 	r->map_x = (int)world->pos.x;
@@ -69,12 +69,24 @@ void	init_values(t_raycast *r, t_world *world, int x)
 	}
 }
 
+static t_image	*get_wall_text(t_raycast *r, t_world *world)
+{
+	if (r->side == 0)
+	{
+		if (world->dir.y < 0)
+			return (&world->southwall);
+		return (&world->northwall);
+	}
+	if (r->camera_x > 0)
+		return (&world->westwall);
+	return (&world->eastwall);
+}
+
 static void	texture(t_raycast *r, t_world *world, int x)
 {
-	int			color;
-	int			y;
-	const int	texheight = world->northwall.h;
-	const int	texwidth = world->northwall.w;
+	int				color;
+	int				y;
+	const t_image	*tex = get_wall_text(r, world);
 
 	r->lineheight = (int)((double)WINDOW_H / r->perpwalldist);
 	r->drawstart = -r->lineheight / 2 + WINDOW_H / 2;
@@ -88,17 +100,17 @@ static void	texture(t_raycast *r, t_world *world, int x)
 	else
 		r->wall_x = world->pos.x + r->perpwalldist * r->raydir.x;
 	r->wall_x -= floor((r->wall_x));
-	r->tex_x = (int)(r->wall_x * (double)texwidth);
+	r->tex_x = (int)(r->wall_x * (double)tex->w);
 	if ((r->side == 0 && r->raydir.x > 0) || (r->side == 1 && r->raydir.y < 0))
-		r->tex_x = texwidth - r->tex_x - 1;
-	r->step = 1.0 * texheight / r->lineheight;
+		r->tex_x = tex->w - r->tex_x - 1;
+	r->step = 1.0 * tex->h / r->lineheight;
 	r->tex_pos = (r->drawstart - WINDOW_H / 2 + r->lineheight / 2) * r->step;
 	y = r->drawstart;
 	while (y < r->drawend)
 	{
-		r->tex_y = (int)r->tex_pos & (texheight - 1);
+		r->tex_y = (int)r->tex_pos & (tex->h - 1);
 		r->tex_pos += r->step;
-		color = get_pixel_from_img(&world->northwall, r->tex_x, r->tex_y);
+		color = get_pixel_from_img((t_image *)tex, r->tex_x, r->tex_y);
 		//maybe put darker color on sides here
 		put_pixel_to_img(&world->frame, x, y, color);
 		++y;
@@ -141,5 +153,6 @@ int	raycast(t_world *world)
 		++x;
 	}
 	mlx_put_image_to_window(world->mlx, world->mlx_win, world->frame.img, 0, 0);
+	printf("pos: %lf %lf\ndir: %lf %lf\n\n", world->pos.x, world->pos.y, world->dir.x, world->dir.y);
 	return (EXIT_SUCCESS);
 }

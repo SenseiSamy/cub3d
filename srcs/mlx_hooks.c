@@ -6,24 +6,46 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/11 16:19:21 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/11 17:26:53 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	rotate_cam(t_world *world, double value)
+{
+	double	tmp;
+
+	tmp = world->dir.x;
+	world->dir.x = world->dir.x * cos(value) - world->dir.y * sin(value);
+	world->dir.y = tmp * sin(value) + world->dir.y * cos(value);
+	tmp = world->plane.x;
+	world->plane.x = world->plane.x * cos(value) - world->plane.y * sin(value);
+	world->plane.y = tmp * sin(value) + world->plane.y * cos(value);
+}
 
 static int	hook_key_press(int key, t_world *world)
 {
 	if (key == ESCAPE)
 		exit_cub3d(world);
 	else if (key == W)
-		world->pos.x -= 0.1;
+	{
+		world->pos.x += 0.1 * world->dir.x;
+		world->pos.y += 0.1 * world->dir.y;
+	}
 	else if (key == S)
-		world->pos.x += 0.1;
-	else if (key == A)
-		world->pos.y -= 0.1;
-	else if (key == D)
-		world->pos.y += 0.1;
+	{
+		world->pos.x -= 0.1 * world->dir.x;
+		world->pos.y -= 0.1 * world->dir.y;
+	}
+	// else if (key == A)
+	// 	world->pos.y -= 0.1;
+	// else if (key == D)
+	// 	world->pos.y += 0.1;
+	else if (key == R_ARROW)
+		rotate_cam(world, -0.06);
+	else if (key == L_ARROW)
+		rotate_cam(world, 0.06);
 	else
 		return (EXIT_SUCCESS);
 	raycast(world);

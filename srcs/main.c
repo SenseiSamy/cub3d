@@ -6,11 +6,10 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:21:01 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/11 16:19:15 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/11 16:22:54 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <OpenGL/gl.h>
 #include "cub3D.h"
 
 int	main(int argc, char **argv)

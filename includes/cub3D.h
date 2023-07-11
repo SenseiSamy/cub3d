@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/11 16:19:23 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/11 16:47:53 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 #  define S 115
 #  define A 97
 #  define D 100
+#  define R_ARROW 65363
+#  define L_ARROW 65361
 # else
 #  define ESCAPE 53
 #  define W 13
