@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/10 22:22:32 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/11 16:19:23 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 # define CUB3D_H
 
 # include "mlx.h"
-# include "mlx_int.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
 # include <math.h>
 # include "libft.h"
 # include <stdbool.h>
@@ -23,11 +27,19 @@
 # define WINDOW_W 1280
 # define WINDOW_H 720
 
-# define ESCAPE 65307
-# define W 119
-# define S 115
-# define A 97
-# define D 100
+# ifndef __APPLE__
+#  define ESCAPE 65307
+#  define W 119
+#  define S 115
+#  define A 97
+#  define D 100
+# else
+#  define ESCAPE 53
+#  define W 13
+#  define S 1
+#  define A 0
+#  define D 2
+# endif
 
 typedef struct	s_vector
 {

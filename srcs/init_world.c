@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/10 22:22:01 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/11 16:19:11 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	init_world(int argc, char **argv, t_world *world)
 		return (ft_dprintf(2, "Error\nMLX error\n"), EXIT_FAILURE);
 	if (parse(world, argv[1]) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	world->pos.x = 23.0;
-	world->pos.y = 3.0;
-	world->dir.x = -1.0;
-	world->dir.y = 0.0;
+	world->pos.x = 10.0;
+	world->pos.y = 10.0;
+	world->dir.x = -1;
+	world->dir.y = 0;
 	world->plane.x = 0;
 	world->plane.y = 0.66;
 	return (EXIT_SUCCESS);

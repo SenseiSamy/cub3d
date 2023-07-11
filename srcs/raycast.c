@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:28:21 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/10 22:13:04 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/11 16:19:16 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ void	init_values(t_raycast *r, t_world *world, int x)
 
 static void	texture(t_raycast *r, t_world *world, int x)
 {
-	int	color;
-	int	y;
+	int			color;
+	int			y;
+	const int	texheight = world->northwall.h;
+	const int	texwidth = world->northwall.w;
 
-	r->lineheight = (int)(WINDOW_H / r->perpwalldist);
+	r->lineheight = (int)((double)WINDOW_H / r->perpwalldist);
 	r->drawstart = -r->lineheight / 2 + WINDOW_H / 2;
 	if (r->drawstart < 0)
 		r->drawstart = 0;
@@ -86,15 +88,15 @@ static void	texture(t_raycast *r, t_world *world, int x)
 	else
 		r->wall_x = world->pos.x + r->perpwalldist * r->raydir.x;
 	r->wall_x -= floor((r->wall_x));
-	r->tex_x = (int)(r->wall_x * (double)world->northwall.h);
-	if ((r->side == 0 && r->raydir.x > 0) || (r->side == 1 && r->raydir.x < 0))
-		r->tex_x = world->northwall.h - r->tex_x - 1;
-	r->step = 1.0 * world->northwall.h / r->lineheight;
+	r->tex_x = (int)(r->wall_x * (double)texwidth);
+	if ((r->side == 0 && r->raydir.x > 0) || (r->side == 1 && r->raydir.y < 0))
+		r->tex_x = texwidth - r->tex_x - 1;
+	r->step = 1.0 * texheight / r->lineheight;
 	r->tex_pos = (r->drawstart - WINDOW_H / 2 + r->lineheight / 2) * r->step;
 	y = r->drawstart;
 	while (y < r->drawend)
 	{
-		r->tex_y = (int)r->tex_pos & (world->northwall.h - 1);
+		r->tex_y = (int)r->tex_pos & (texheight - 1);
 		r->tex_pos += r->step;
 		color = get_pixel_from_img(&world->northwall, r->tex_x, r->tex_y);
 		//maybe put darker color on sides here
@@ -132,9 +134,9 @@ int	raycast(t_world *world)
 				r.hit = 1;
 		}
 		if (r.side == 0)
-			r.perpwalldist = (r.sidedist.x - r.deltadist.x);
+			r.perpwalldist = r.sidedist.x - r.deltadist.x;
 		else
-			r.perpwalldist = (r.sidedist.y - r.deltadist.y);
+			r.perpwalldist = r.sidedist.y - r.deltadist.y;
 		texture(&r, world, x);
 		++x;
 	}

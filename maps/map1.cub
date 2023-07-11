@@ -1,10 +1,10 @@
- NO ./minecraft_stone.xpm
- SO ./minecraft_stone.xpm
- WE ./minecraft_stone.xpm
- EA ./minecraft_stone.xpm
+ NO test.xpm
+ SO test.xpm
+ WE test.xpm
+ EA test.xpm
 
- F 220,100,0
- C 225,30,0
+ F 50,90,168
+ C 189,56,207
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
