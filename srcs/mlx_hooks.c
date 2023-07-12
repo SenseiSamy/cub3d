@@ -38,10 +38,16 @@ static int	hook_key_press(int key, t_world *world)
 		world->pos.x -= 0.1 * world->dir.x;
 		world->pos.y -= 0.1 * world->dir.y;
 	}
-	// else if (key == A)
-	// 	world->pos.y -= 0.1;
-	// else if (key == D)
-	// 	world->pos.y += 0.1;
+	else if (key == A)
+	{
+		world->pos.x -= 0.1 * world->plane.x;
+		world->pos.y -= 0.1 * world->plane.y;
+	}
+	else if (key == D)
+	{
+		world->pos.x += 0.1 * world->plane.x;
+		world->pos.y += 0.1 * world->plane.y;
+	}
 	else if (key == R_ARROW)
 		rotate_cam(world, -0.06);
 	else if (key == L_ARROW)

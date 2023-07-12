@@ -47,6 +47,6 @@ int	init_world(int argc, char **argv, t_world *world)
 	world->dir.x = -1;
 	world->dir.y = 0;
 	world->plane.x = 0;
-	world->plane.y = 0.66;
+	world->plane.y = 1.0;
 	return (EXIT_SUCCESS);
 }
