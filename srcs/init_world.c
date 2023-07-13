@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/11 17:25:33 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 15:05:44 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ static int	init_mlx(t_world *world)
 	return (EXIT_SUCCESS);
 }
 
+static void	init_player(t_world *world)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	y = -1;
+	get_start_pos(world->map, &x, &y);
+	world->pos.y = (double)x + 0.5;
+	world->pos.x = (double)y + 0.5;
+	world->dir.x = -1;
+	world->dir.y = 0;
+	world->plane.x = 0;
+	world->plane.y = 1.0;
+	if (world->map[x][y] == 'N')
+		rotate_cam(world, M_PI / 2);
+	else if (world->map[x][y] == 'S')
+		rotate_cam(world, -M_PI / 2);
+	else if (world->map[x][y] == 'W')
+		rotate_cam(world, M_PI);
+}
+
 int	init_world(int argc, char **argv, t_world *world)
 {
 	ft_bzero(world, sizeof (*world));
@@ -42,11 +64,6 @@ int	init_world(int argc, char **argv, t_world *world)
 		return (ft_dprintf(2, "Error\nMLX error\n"), EXIT_FAILURE);
 	if (parse(world, argv[1]) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	world->pos.x = 10.0;
-	world->pos.y = 10.0;
-	world->dir.x = -1;
-	world->dir.y = 0;
-	world->plane.x = 0;
-	world->plane.y = 1.0;
+	init_player(world);
 	return (EXIT_SUCCESS);
 }

@@ -6,13 +6,13 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/11 17:26:53 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 14:54:19 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	rotate_cam(t_world *world, double value)
+void	rotate_cam(t_world *world, double value)
 {
 	double	tmp;
 
@@ -49,9 +49,9 @@ static int	hook_key_press(int key, t_world *world)
 		world->pos.y += 0.1 * world->plane.y;
 	}
 	else if (key == R_ARROW)
-		rotate_cam(world, -0.06);
+		rotate_cam(world, -M_PI / 50);
 	else if (key == L_ARROW)
-		rotate_cam(world, 0.06);
+		rotate_cam(world, M_PI / 50);
 	else
 		return (EXIT_SUCCESS);
 	raycast(world);
