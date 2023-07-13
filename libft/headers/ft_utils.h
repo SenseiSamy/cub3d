@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:48:59 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/08 17:03:58 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 16:00:53 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strmjoin(int nb_arg, ...);
 int		ft_strrepl(char *str, char old, char new);
+char	*ft_strrev(char *str);
 char	*ft_strtrim(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);

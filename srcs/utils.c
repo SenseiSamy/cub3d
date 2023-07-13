@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:36:23 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/11 16:19:18 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 15:30:44 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_world(t_world *world)
 		mlx_destroy_window(world->mlx, world->mlx_win);
 	if (world->mlx)
 	{
-		mlx_destroy_display(world->mlx);
+		//mlx_destroy_display(world->mlx);
 		free(world->mlx);
 	}
 }

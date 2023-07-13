@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/13 17:02:42 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/13 17:10:04 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 #  define S 1
 #  define A 0
 #  define D 2
+#  define R_ARROW 124
+#  define L_ARROW 123
 # endif
 
 typedef struct s_keyboard

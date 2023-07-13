@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:54:16 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/10 22:21:59 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 16:01:56 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	**convert_map(t_list *map_list)
 	maxsize = get_max_size_line(map_list);
 	while (map_list)
 	{
-		map[i++] = fix_line_size((char *)map_list->content, maxsize);
+		map[i++] = ft_strrev(fix_line_size((char *)map_list->content, maxsize));
 		ptr = map_list;
 		map_list = map_list->next;
 		free(ptr);
