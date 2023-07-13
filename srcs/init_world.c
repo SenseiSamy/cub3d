@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/11 17:25:33 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 14:47:27 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	init_keys(t_world *world)
+{
+	world->down = 0;
+	world->up = 0;
+	world->escape = 0;
+	world->larrow = 0;
+	world->left = 0;
+	world->rarrow = 0;
+	world->right = 0;
+}
 
 static int	init_mlx(t_world *world)
 {
@@ -27,7 +38,6 @@ static int	init_mlx(t_world *world)
 		&world->frame.bits_per_pixel, &world->frame.line_length,
 		&world->frame.endian);
 	clear_image(world);
-	set_hooks(world);
 	return (EXIT_SUCCESS);
 }
 
@@ -48,5 +58,7 @@ int	init_world(int argc, char **argv, t_world *world)
 	world->dir.y = 0;
 	world->plane.x = 0;
 	world->plane.y = 1.0;
+	init_keys(world);
+	world->refresh = 0;
 	return (EXIT_SUCCESS);
 }

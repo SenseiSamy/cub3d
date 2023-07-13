@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/11 16:47:53 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 15:02:34 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@
 #  define D 2
 # endif
 
+typedef struct s_keyboard
+{
+	int	up;
+	int	down;
+	int	right;
+	int	left;
+	int	larrow;
+	int	rarrow;
+	int	escape;
+}				t_keyboard;
+
 typedef struct	s_vector
 {
 	double	x;
@@ -77,6 +88,15 @@ typedef struct	s_world
 	t_vector	dir;
 	t_vector	plane;
 	t_image		frame;
+	t_keyboard	*keys;
+	int	up;
+	int	down;
+	int	right;
+	int	left;
+	int	larrow;
+	int	rarrow;
+	int	escape;
+	int	refresh;
 }				t_world;
 
 int		open_file(const char *file_name);
@@ -98,5 +118,6 @@ int		get_pixel_from_img(t_image *img, int x, int y);
 void	clear_image(t_world *world);
 
 int		raycast(t_world *world);
-
+int	something_is_cooking(t_world *world);
+int	hook_key_press(t_world *world);
 #endif
