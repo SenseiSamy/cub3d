@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/11 16:47:53 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/13 15:08:38 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,14 @@ int		rgb(int r, int g, int b);
 int		read_map(t_world *world, int fd, char *line);
 bool	is_map(char *line);
 int		verif_map(char **map);
+int		get_start_pos(char **map, int *x, int *y);
 int 	read_elem(t_world *world, int fd);
 int		parse(t_world *world, char *file_name);
 int		init_world(int argc, char **argv, t_world *world);
 void	free_world(t_world *world);
 void	set_hooks(t_world *world);
 int		exit_cub3d(t_world *world);
+void	rotate_cam(t_world *world, double value);
 
 void	put_pixel_to_img(t_image *img, int x, int y, int color);
 int		get_pixel_from_img(t_image *img, int x, int y);
