@@ -6,11 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/13 15:05:44 by snaji            ###   ########.fr       */
-=======
-/*   Updated: 2023/07/13 14:47:27 by wmari            ###   ########.fr       */
->>>>>>> wmari
+/*   Updated: 2023/07/13 17:03:51 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +74,7 @@ int	init_world(int argc, char **argv, t_world *world)
 		return (ft_dprintf(2, "Error\nMLX error\n"), EXIT_FAILURE);
 	if (parse(world, argv[1]) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-<<<<<<< HEAD
 	init_player(world);
-=======
-	world->pos.x = 10.0;
-	world->pos.y = 10.0;
-	world->dir.x = -1;
-	world->dir.y = 0;
-	world->plane.x = 0;
-	world->plane.y = 1.0;
 	init_keys(world);
-	world->refresh = 0;
->>>>>>> wmari
 	return (EXIT_SUCCESS);
 }
