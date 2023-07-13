@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/13 15:11:32 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/13 17:01:49 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,10 @@ int	hook_key_press(t_world *world)
 			world->pos.y += 0.03 * world->plane.y;
 		}
 		if (world->rarrow)
-			rotate_cam(world, -0.006);
+			rotate_cam(world, -0.03);
 		if (world->larrow)
-			rotate_cam(world, 0.006);
+			rotate_cam(world, 0.03);
 	}
-	else if (key == R_ARROW)
-		rotate_cam(world, -0.06);
-	else if (key == L_ARROW)
-		rotate_cam(world, 0.06);
-	else
-		return (EXIT_SUCCESS);
-	raycast(world);
 	return (EXIT_SUCCESS);
 }
 
@@ -115,5 +108,6 @@ void	set_hooks(t_world *world)
 {
 	mlx_hook(world->mlx_win, 2, 1L << 0, keypresses, world);
 	mlx_hook(world->mlx_win, 3, 1L << 1, keyrelease, world);
+	
 	mlx_hook(world->mlx_win, 17, 0L, exit_cub3d, world);
 }
