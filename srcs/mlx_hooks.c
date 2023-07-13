@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/13 16:37:53 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/13 16:57:49 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	hook_key_press(t_world *world)
 			world->pos.y += 0.03 * world->plane.y;
 		}
 		if (world->rarrow)
-			rotate_cam(world, -0.006);
+			rotate_cam(world, -0.03);
 		if (world->larrow)
-			rotate_cam(world, 0.006);
+			rotate_cam(world, 0.03);
 	}
 	return (EXIT_SUCCESS);
 }
