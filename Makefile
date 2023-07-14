@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snaji <snaji@student.42.fr>                +#+  +:+       +#+         #
+#    By: wmari <wmari@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/07/10 22:22:09 by snaji            ###   ########.fr        #
+#    Updated: 2023/07/14 13:57:31 by wmari            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS	= srcs/main.c\
 		srcs/raycast.c\
 		srcs/image_utils.c\
 		srcs/utils.c\
-		srcs/init_world.c
+		srcs/init_world.c\
+		srcs/mlx_hook_utils.c
 OBJS	= $(patsubst srcs/%.c, bin/%.o, $(SRCS))
 NAME	= cub3D
 

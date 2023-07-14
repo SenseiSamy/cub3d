@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/14 10:53:58 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:56:01 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int 	read_elem(t_world *world, int fd);
 int		parse(t_world *world, char *file_name);
 int		init_world(int argc, char **argv, t_world *world);
 void	free_world(t_world *world);
-void	set_hooks(t_world *world);
 int		exit_cub3d(t_world *world);
 void	rotate_cam(t_world *world, double value);
 
@@ -122,7 +121,14 @@ int		get_pixel_from_img(t_image *img, int x, int y);
 void	clear_image(t_world *world);
 
 int		raycast(t_world *world);
-int	something_is_cooking(t_world *world);
-int	hook_key_press(t_world *world);
-int	main_loop(t_world *world);
+/*_________________MLX_HOOKS________________*/
+int		main_loop(t_world *world);
+void	set_hooks(t_world *world);
+int		hook_key_press(t_world *world);
+int		keyrelease(int keycode, t_world *world);
+int		keypresses(int keycode, t_world *world);
+int		keys_is_not_pressed(t_world *world);
+int		can_move_in_dir(t_world *world, int dir);
+void	modif_position(t_world *world, int dir);
+void	rotate_cam(t_world *world, double value);
 #endif
