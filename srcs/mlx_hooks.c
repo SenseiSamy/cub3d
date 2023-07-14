@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/14 10:37:45 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/14 10:47:03 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rotate_cam(t_world *world, double value)
 
 int	something_is_cooking(t_world *world)
 {
-	if (world->escape || world->up || world->down || world->left || world->right || world->larrow || world->rarrow)
+	if (world->keys.escape || world->keys.up || world->keys.down || world->keys.left || world->keys.right || world->keys.larrow || world->keys.rarrow)
 		return (0);
 	return (1);
 }
@@ -36,31 +36,31 @@ int	hook_key_press(t_world *world)
 	if (!something_is_cooking(world))
 	{
 		world->refresh = 1;
-		if (world->escape)
+		if (world->keys.escape)
 			exit_cub3d(world);
-		if (world->up)
+		if (world->keys.up)
 		{
 			world->pos.x += 0.03 * world->dir.x;
 			world->pos.y += 0.03 * world->dir.y;
 		}
-		if (world->down)
+		if (world->keys.down)
 		{
 			world->pos.x -= 0.03 * world->dir.x;
 			world->pos.y -= 0.03 * world->dir.y;
 		}
-		if (world->left)
+		if (world->keys.left)
 		{
 			world->pos.x -= 0.03 * world->plane.x;
 			world->pos.y -= 0.03 * world->plane.y;
 		}
-		if (world->right)
+		if (world->keys.right)
 		{
 			world->pos.x += 0.03 * world->plane.x;
 			world->pos.y += 0.03 * world->plane.y;
 		}
-		if (world->rarrow)
+		if (world->keys.rarrow)
 			rotate_cam(world, -0.03);
-		if (world->larrow)
+		if (world->keys.larrow)
 			rotate_cam(world, 0.03);
 	}
 	return (EXIT_SUCCESS);
@@ -69,38 +69,38 @@ int	hook_key_press(t_world *world)
 int	keypresses(int keycode, t_world *world)
 {
 	if (keycode == W)
-		world->up = 1;
+		world->keys.up = 1;
 	if (keycode == S)
-		world->down = 1;
+		world->keys.down = 1;
 	if (keycode == A)
-		world->left = 1;
+		world->keys.left = 1;
 	if (keycode == D)
-		world->right = 1;
+		world->keys.right = 1;
 	if (keycode == L_ARROW)
-		world->larrow = 1;
+		world->keys.larrow = 1;
 	if (keycode == R_ARROW)
-		world->rarrow = 1;
+		world->keys.rarrow = 1;
 	if (keycode == ESCAPE)
-		world->escape = 1;
+		world->keys.escape = 1;
 	return (hook_key_press(world));
 }
 
 int	keyrelease(int keycode, t_world *world)
 {
 	if (keycode == W)
-		world->up = 0;
+		world->keys.up = 0;
 	if (keycode == S)
-		world->down = 0;
+		world->keys.down = 0;
 	if (keycode == A)
-		world->left = 0;
+		world->keys.left = 0;
 	if (keycode == D)
-		world->right = 0;
+		world->keys.right = 0;
 	if (keycode == L_ARROW)
-		world->larrow = 0;
+		world->keys.larrow = 0;
 	if (keycode == R_ARROW)
-		world->rarrow = 0;
+		world->keys.rarrow = 0;
 	if (keycode == ESCAPE)
-		world->escape = 0;
+		world->keys.escape = 0;
 	return (hook_key_press(world));
 }
 

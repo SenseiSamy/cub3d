@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/13 17:10:04 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/14 10:47:22 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,7 @@ typedef struct	s_world
 	t_vector	dir;
 	t_vector	plane;
 	t_image		frame;
-	t_keyboard	*keys;
-	int	up;
-	int	down;
-	int	right;
-	int	left;
-	int	larrow;
-	int	rarrow;
-	int	escape;
-	int	refresh;
+	t_keyboard	keys;
 }				t_world;
 
 int		open_file(const char *file_name);

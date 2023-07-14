@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/13 17:03:51 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/14 10:44:48 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	init_keys(t_world *world)
 {
-	world->down = 0;
-	world->up = 0;
-	world->escape = 0;
-	world->larrow = 0;
-	world->left = 0;
-	world->rarrow = 0;
-	world->right = 0;
+	world->keys.down = 0;
+	world->keys.up = 0;
+	world->keys.escape = 0;
+	world->keys.larrow = 0;
+	world->keys.left = 0;
+	world->keys.rarrow = 0;
+	world->keys.right = 0;
 }
 
 static int	init_mlx(t_world *world)
