@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/14 10:47:22 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/14 10:53:58 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@
 #  define R_ARROW 124
 #  define L_ARROW 123
 # endif
+
+enum Direction {
+    UP,
+	DOWN,
+	LEFT,
+	RIGHT
+};
 
 typedef struct s_keyboard
 {
@@ -91,6 +98,7 @@ typedef struct	s_world
 	t_vector	plane;
 	t_image		frame;
 	t_keyboard	keys;
+	int			refresh;
 }				t_world;
 
 int		open_file(const char *file_name);
@@ -116,4 +124,5 @@ void	clear_image(t_world *world);
 int		raycast(t_world *world);
 int	something_is_cooking(t_world *world);
 int	hook_key_press(t_world *world);
+int	main_loop(t_world *world);
 #endif
