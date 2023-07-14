@@ -79,7 +79,7 @@ char	**convert_map(t_list *map_list)
 	maxsize = get_max_size_line(map_list);
 	while (map_list)
 	{
-		map[i++] = ft_strrev(fix_line_size((char *)map_list->content, maxsize));
+		map[i++] = fix_line_size((char *)map_list->content, maxsize);
 		ptr = map_list;
 		map_list = map_list->next;
 		free(ptr);

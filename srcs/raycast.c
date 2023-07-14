@@ -104,12 +104,12 @@ void	init_values(t_raycast *r, t_world *world, int x)
 	r->hit = 0;
 	if (r->raydir.x < 0)
 	{
-		r->step_x = -1;
+		r->step_x = 1;
 		r->sidedist.x = (world->pos.x - r->map_x) * r->deltadist.x;
 	}
 	else
 	{
-		r->step_x = 1;
+		r->step_x = -1;
 		r->sidedist.x = (r->map_x + 1.0 - world->pos.x) * r->deltadist.x;
 	}
 	if (r->raydir.y < 0)
@@ -153,9 +153,9 @@ int	raycast(t_world *world)
 				r.hit = 1;
 		}
 		if (r.side == 0)
-			r.perpwalldist = (r.sidedist.x - r.deltadist.x);
+			r.perpwalldist = r.sidedist.x - r.deltadist.x;
 		else
-			r.perpwalldist = (r.sidedist.y - r.deltadist.y);
+			r.perpwalldist = r.sidedist.y - r.deltadist.y;
 		r.perpwalldist *= cos(atan2(world->dir.y, world->dir.x)
 			- atan2(r.raydir.y, r.raydir.x));
 		texture(&r, world, x);
