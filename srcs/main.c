@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:21:01 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/13 15:02:51 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/14 10:38:55 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main_loop(t_world *world)
 {
 	if (!something_is_cooking(world))
 	{
-		mlx_clear_window(world->mlx, world->mlx_win);
 		hook_key_press(world);
+		//mlx_clear_window(world->mlx, world->mlx_win);
 		raycast(world);
 		world->refresh = 0;
 	}
