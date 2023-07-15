@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:28:21 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/13 15:44:25 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:16:02 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ typedef struct	s_raycast
 static t_image	*get_wall_text(t_raycast *r, t_world *world)
 {
 	double	angle;
-	//double	fov;
 
 	angle = atan2(r->raydir.y, r->raydir.x) * 180 / M_PI + 180;
-	//fov = 2 * atan(world->plane.y / 1.0) * 180 / M_PI;
 	if (r->side == 1)
 	{
 		if (angle < 180.0)
@@ -51,8 +49,8 @@ static t_image	*get_wall_text(t_raycast *r, t_world *world)
 	else
 	{
 		if (angle >= 90.0 && angle <= 270.0)
-			return (&world->eastwall);
-		return (&world->westwall);
+			return (&world->westwall);
+		return (&world->eastwall);
 	}
 }
 
@@ -75,7 +73,7 @@ static void	texture(t_raycast *r, t_world *world, int x)
 		r->wall_x = world->pos.x + r->perpwalldist * r->raydir.x;
 	r->wall_x -= floor((r->wall_x));
 	r->tex_x = (int)(r->wall_x * (double)tex->w);
-	if ((r->side == 0 && r->raydir.x > 0) || (r->side == 1 && r->raydir.y < 0))
+	if (!(r->side == 0 && r->raydir.x > 0) && !(r->side == 1 && r->raydir.y < 0))
 		r->tex_x = tex->w - r->tex_x - 1;
 	r->step = 1.0 * tex->h / r->lineheight;
 	r->tex_pos = (r->drawstart - WINDOW_H / 2 + r->lineheight / 2) * r->step;
@@ -92,7 +90,7 @@ static void	texture(t_raycast *r, t_world *world, int x)
 
 void	init_values(t_raycast *r, t_world *world, int x)
 {
-	r->camera_x = 2 * x / (double)WINDOW_W - 1;
+	r->camera_x = (2 * x / (double)WINDOW_W - 1) * -1;
 	r->raydir.x = world->dir.x + world->plane.x * r->camera_x;
 	r->raydir.y = world->dir.y + world->plane.y * r->camera_x;
 	r->map_x = (int)world->pos.x;
@@ -104,12 +102,12 @@ void	init_values(t_raycast *r, t_world *world, int x)
 	r->hit = 0;
 	if (r->raydir.x < 0)
 	{
-		r->step_x = 1;
+		r->step_x = -1;
 		r->sidedist.x = (world->pos.x - r->map_x) * r->deltadist.x;
 	}
 	else
 	{
-		r->step_x = -1;
+		r->step_x = 1;
 		r->sidedist.x = (r->map_x + 1.0 - world->pos.x) * r->deltadist.x;
 	}
 	if (r->raydir.y < 0)

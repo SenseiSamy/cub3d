@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:51:36 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/14 14:02:19 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:16:48 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,30 @@ int	keys_is_not_pressed(t_world *world)
 
 int	can_move_in_dir(t_world *world, int dir)
 {
-	if (dir == UP && world->map[(int)(world->pos.x + (0.03 * world->dir.x))]
-		[(int)(world->pos.y + (0.03 * world->dir.y))] != '1')
-		return (1);
-	if (dir == DOWN && world->map[(int)(world->pos.x - (0.03 * world->dir.x))]
-		[(int)(world->pos.y - (0.03 * world->dir.y))] != '1')
-		return (1);
-	if (dir == RIGHT && world->map[(int)(world->pos.x
-			+ (0.03 * world->plane.x))]
-		[(int)(world->pos.y + (0.03 * world->plane.y))] != '1')
-		return (1);
-	if (dir == LEFT && world->map[(int)(world->pos.x - (0.03 * world->plane.x))]
-		[(int)(world->pos.y - (0.03 * world->plane.y))] != '1')
-		return (1);
-	return (0);
+	int	new_x;
+	int	new_y;
+
+	if (dir == UP)
+	{
+		new_x = (int)(world->pos.x + (0.03 * world->dir.x));
+		new_y = (int)(world->pos.y + (0.03 * world->dir.y));
+	}
+	else if (dir == DOWN)
+	{
+		new_x = (int)(world->pos.x - (0.03 * world->dir.x));
+		new_y = (int)(world->pos.y - (0.03 * world->dir.y));
+	}
+	else if (dir == RIGHT)
+	{
+		new_x = (int)(world->pos.x - (0.03 * world->plane.x));
+		new_y = (int)(world->pos.y - (0.03 * world->plane.y));
+	}
+	else
+	{
+		new_x = (int)(world->pos.x + (0.03 * world->plane.x));
+		new_y = (int)(world->pos.y + (0.03 * world->plane.y));
+	}
+	if (world->map[new_y] && world->map[new_y][new_x] == '1')
+		return (0);
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/14 13:56:01 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/15 15:56:03 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@
 #  define D 2
 #  define R_ARROW 124
 #  define L_ARROW 123
+# endif
+
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
 # endif
 
 enum Direction {

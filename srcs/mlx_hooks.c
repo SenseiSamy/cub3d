@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/14 14:01:27 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:18:11 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	modif_position(t_world *world, int dir)
 	}
 	if (dir == LEFT)
 	{
-		world->pos.x -= 0.03 * world->plane.x;
-		world->pos.y -= 0.03 * world->plane.y;
+		world->pos.x += 0.03 * world->plane.x;
+		world->pos.y += 0.03 * world->plane.y;
 	}
 	if (dir == RIGHT)
 	{
-		world->pos.x += 0.03 * world->plane.x;
-		world->pos.y += 0.03 * world->plane.y;
+		world->pos.x -= 0.03 * world->plane.x;
+		world->pos.y -= 0.03 * world->plane.y;
 	}
 }
 
@@ -64,9 +64,9 @@ int	hook_key_press(t_world *world)
 		if (world->keys.right && can_move_in_dir(world, RIGHT))
 			modif_position(world, RIGHT);
 		if (world->keys.rarrow)
-			rotate_cam(world, -0.03);
-		if (world->keys.larrow)
 			rotate_cam(world, 0.03);
+		if (world->keys.larrow)
+			rotate_cam(world, -0.03);
 	}
 	return (EXIT_SUCCESS);
 }
