@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/15 16:18:11 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:18:27 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	hook_key_press(t_world *world)
 			rotate_cam(world, 0.03);
 		if (world->keys.larrow)
 			rotate_cam(world, -0.03);
+		if (world->keys.use)
+			door_use(world);
 	}
 	return (EXIT_SUCCESS);
 }

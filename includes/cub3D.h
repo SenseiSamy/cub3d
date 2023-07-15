@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/15 15:56:03 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:15:27 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 #  define S 115
 #  define A 97
 #  define D 100
+#  define E 101
 #  define R_ARROW 65363
 #  define L_ARROW 65361
 # else
@@ -62,6 +63,7 @@ typedef struct s_keyboard
 	int	down;
 	int	right;
 	int	left;
+	int	use;
 	int	larrow;
 	int	rarrow;
 	int	escape;
@@ -92,6 +94,8 @@ typedef struct	s_world
 	t_image		southwall;
 	t_image		eastwall;
 	t_image		westwall;
+	t_image		door_closed;
+	t_image		door_opened;
 	int			floor_color;
 	int			ceiling_color;
 	int			width;
@@ -135,4 +139,5 @@ int		keys_is_not_pressed(t_world *world);
 int		can_move_in_dir(t_world *world, int dir);
 void	modif_position(t_world *world, int dir);
 void	rotate_cam(t_world *world, double value);
+void	door_use(t_world *world);
 #endif

@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 18:21:57 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/10 17:18:03 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:02:02 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ int	check_walls_rec(int y, int x, char **map)
 {
 	if (y < 0 || x < 0 || map[y] == NULL || map[y][x] == 0 || map[y][x] == ' ')
 		return (1);
-	if (map[y][x] == '1' || map[y][x] == '3')
+	if (map[y][x] == '1' || map[y][x] == '2' || map[y][x] == '3'
+		|| map[y][x] == 'X')
 		return (0);
-	map[y][x] = '3';
+	map[y][x] = 'X';
 	return (check_walls_rec(y + 1, x, map) + check_walls_rec(y - 1, x, map)
 		+ check_walls_rec(y, x + 1, map) + check_walls_rec(y, x - 1, map));
 }
@@ -72,7 +73,7 @@ int	check_walls(char **map)
 	}
 	i = 0;
 	while (map[i])
-		ft_strrepl(map[i++], '3', '0');
+		ft_strrepl(map[i++], 'X', '0');
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:28:21 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/15 16:16:02 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/15 17:46:17 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ typedef struct	s_raycast
 	double		tex_pos;
 }			t_raycast;
 
-static t_image	*get_wall_text(t_raycast *r, t_world *world)
+static t_image	*get_wall_text(t_raycast *r, t_world *world, char wall)
 {
 	double	angle;
 
 	angle = atan2(r->raydir.y, r->raydir.x) * 180 / M_PI + 180;
+	if (wall == '2')
+		return (&world->door_closed);
+	if (wall == '3')
+		return (&world->door_opened);
 	if (r->side == 1)
 	{
 		if (angle < 180.0)
@@ -54,11 +58,11 @@ static t_image	*get_wall_text(t_raycast *r, t_world *world)
 	}
 }
 
-static void	texture(t_raycast *r, t_world *world, int x)
+static void	texture(t_raycast *r, t_world *world, int x, char wall)
 {
 	int				color;
 	int				y;
-	const t_image	*tex = get_wall_text(r, world);
+	const t_image	*tex = get_wall_text(r, world, wall);
 
 	r->lineheight = (int)((double)WINDOW_H / r->perpwalldist);
 	r->drawstart = -r->lineheight / 2 + WINDOW_H / 2;
@@ -147,7 +151,8 @@ int	raycast(t_world *world)
 				r.map_y += r.step_y;
 				r.side = 1;
 			}
-			if (world->map[r.map_y][r.map_x] == '1')
+			if (world->map[r.map_y][r.map_x] >= '1'
+				&& world->map[r.map_y][r.map_x] <= '9')
 				r.hit = 1;
 		}
 		if (r.side == 0)
@@ -156,7 +161,7 @@ int	raycast(t_world *world)
 			r.perpwalldist = r.sidedist.y - r.deltadist.y;
 		r.perpwalldist *= cos(atan2(world->dir.y, world->dir.x)
 			- atan2(r.raydir.y, r.raydir.x));
-		texture(&r, world, x);
+		texture(&r, world, x, world->map[r.map_y][r.map_x]);
 		++x;
 	}
 	mlx_put_image_to_window(world->mlx, world->mlx_win, world->frame.img, 0, 0);
