@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/15 16:08:00 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:20:06 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	init_player(t_world *world)
 	world->dir.x = -1.0;
 	world->dir.y = 0.0;
 	world->plane.x = 0.0;
-	world->plane.y = 1.5;
+	world->plane.y = 1.0;
 	if (world->map[x][y] == 'N')
 		rotate_cam(world, M_PI / 2);
 	else if (world->map[x][y] == 'S')
