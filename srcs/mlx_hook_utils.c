@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:51:36 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/15 18:18:07 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/16 20:03:51 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	keypresses(int keycode, t_world *world)
 	if (keycode == ESCAPE)
 		world->keys.escape = 1;
 	if (keycode == E)
+	{
+		door_use(world);
 		world->keys.use = 1;
+	}
 	return (hook_key_press(world));
 }
 

@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/15 16:26:27 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/16 20:03:15 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	init_mlx(t_world *world)
 	world->frame.addr = mlx_get_data_addr(world->frame.img,
 		&world->frame.bits_per_pixel, &world->frame.line_length,
 		&world->frame.endian);
+	mlx_do_key_autorepeatoff(world->mlx);
 	clear_image(world);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/15 18:15:27 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/16 19:50:07 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ typedef struct	s_world
 	t_image		southwall;
 	t_image		eastwall;
 	t_image		westwall;
-	t_image		door_closed;
-	t_image		door_opened;
+	t_image		door;
 	int			floor_color;
 	int			ceiling_color;
 	int			width;

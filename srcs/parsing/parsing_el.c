@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 14:21:26 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/15 17:48:59 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/16 19:50:19 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_elem(char *line)
 {
-	const char	*ids[] = {"NO", "SO", "WE", "EA", "DC", "DO", "F", "C", NULL};
+	const char	*ids[] = {"NO", "SO", "WE", "EA", "DO", "F", "C", NULL};
 	int			i;
 
 	i = 0;
@@ -47,9 +47,7 @@ int	set_elem(t_world *world, char *line)
 	else if (ft_strncmp(split[0], "EA", 3) == 0)
 		world->eastwall = open_sprite(world, split[1]);
 	else if (ft_strncmp(split[0], "DO", 3) == 0)
-		world->door_opened = open_sprite(world, split[1]);
-	else if (ft_strncmp(split[0], "DC", 3) == 0)
-		world->door_closed = open_sprite(world, split[1]);
+		world->door = open_sprite(world, split[1]);
 	else if (ft_strncmp(split[0], "F", 2) == 0)
 		world->floor_color = get_color(split[1]);
 	else if (ft_strncmp(split[0], "C", 2) == 0)

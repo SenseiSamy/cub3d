@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:28:21 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/15 17:46:17 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/16 19:57:01 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ static t_image	*get_wall_text(t_raycast *r, t_world *world, char wall)
 
 	angle = atan2(r->raydir.y, r->raydir.x) * 180 / M_PI + 180;
 	if (wall == '2')
-		return (&world->door_closed);
-	if (wall == '3')
-		return (&world->door_opened);
+		return (&world->door);
 	if (r->side == 1)
 	{
 		if (angle < 180.0)
@@ -151,8 +149,8 @@ int	raycast(t_world *world)
 				r.map_y += r.step_y;
 				r.side = 1;
 			}
-			if (world->map[r.map_y][r.map_x] >= '1'
-				&& world->map[r.map_y][r.map_x] <= '9')
+			if (world->map[r.map_y][r.map_x] == '1'
+				|| world->map[r.map_y][r.map_x] == '2')
 				r.hit = 1;
 		}
 		if (r.side == 0)
@@ -165,6 +163,6 @@ int	raycast(t_world *world)
 		++x;
 	}
 	mlx_put_image_to_window(world->mlx, world->mlx_win, world->frame.img, 0, 0);
-	printf("pos: %lf %lf\ndir: %lf %lf\nangle: %lf\n\n", world->pos.x, world->pos.y, world->dir.x, world->dir.y, atan2(world->dir.y, world->dir.x) * 180 / M_PI + 180);
+	//printf("pos: %lf %lf\ndir: %lf %lf\nangle: %lf\n\n", world->pos.x, world->pos.y, world->dir.x, world->dir.y, atan2(world->dir.y, world->dir.x) * 180 / M_PI + 180);
 	return (EXIT_SUCCESS);
 }
