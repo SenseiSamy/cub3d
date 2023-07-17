@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/16 20:03:15 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:40:58 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	init_player(t_world *world)
 	world->dir.x = -1.0;
 	world->dir.y = 0.0;
 	world->plane.x = 0.0;
-	world->plane.y = 1.0;
+	world->plane.y = 0.80;
 	if (world->map[x][y] == 'N')
 		rotate_cam(world, M_PI / 2);
 	else if (world->map[x][y] == 'S')
