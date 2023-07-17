@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/17 13:42:57 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/17 16:10:42 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE 0.05f
+# define MOVE 0.05
+# define OFF_WALL 0.4
 
 enum Direction {
     UP,
