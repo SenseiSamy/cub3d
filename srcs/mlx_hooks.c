@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/16 20:04:09 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/17 13:43:24 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,23 @@ void	modif_position(t_world *world, int dir)
 {
 	if (dir == UP)
 	{
-		world->pos.x += 0.03 * world->dir.x;
-		world->pos.y += 0.03 * world->dir.y;
+		world->pos.x += MOVE * world->dir.x;
+		world->pos.y += MOVE * world->dir.y;
 	}
 	if (dir == DOWN)
 	{
-		world->pos.x -= 0.03 * world->dir.x;
-		world->pos.y -= 0.03 * world->dir.y;
+		world->pos.x -= MOVE * world->dir.x;
+		world->pos.y -= MOVE * world->dir.y;
 	}
 	if (dir == LEFT)
 	{
-		world->pos.x += 0.03 * world->plane.x;
-		world->pos.y += 0.03 * world->plane.y;
+		world->pos.x += MOVE * world->plane.x;
+		world->pos.y += MOVE * world->plane.y;
 	}
 	if (dir == RIGHT)
 	{
-		world->pos.x -= 0.03 * world->plane.x;
-		world->pos.y -= 0.03 * world->plane.y;
+		world->pos.x -= MOVE * world->plane.x;
+		world->pos.y -= MOVE * world->plane.y;
 	}
 }
 
@@ -64,9 +64,9 @@ int	hook_key_press(t_world *world)
 		if (world->keys.right && can_move_in_dir(world, RIGHT))
 			modif_position(world, RIGHT);
 		if (world->keys.rarrow)
-			rotate_cam(world, 0.03);
+			rotate_cam(world, MOVE);
 		if (world->keys.larrow)
-			rotate_cam(world, -0.03);
+			rotate_cam(world, -MOVE);
 	}
 	return (EXIT_SUCCESS);
 }
