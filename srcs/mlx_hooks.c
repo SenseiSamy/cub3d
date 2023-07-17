@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/17 15:11:22 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:28:03 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,143 @@ void	rotate_cam(t_world *world, double value)
 	world->plane.y = tmp * sin(value) + world->plane.y * cos(value);
 }
 
+int		can_do_comp(t_world *world, int dir, int comp)
+{
+	int	new_x;
+	int	new_y;
+	
+	if (dir == UP)
+	{
+		if (comp == X)
+		{
+			if (world->dir.x < 0.0)
+				new_x = (int)(world->pos.x + (world->dir.x * MOVE) - OFF_WALL);
+			else
+				new_x = (int)(world->pos.x + (world->dir.x * MOVE) + OFF_WALL);
+			new_y = (int)(world->pos.y);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+		else
+		{
+			new_x = (int)(world->pos.x);
+			if (world->dir.y < 0.0)
+				new_y = (int)(world->pos.y + (world->dir.y * MOVE) - OFF_WALL);
+			else
+				new_y = (int)(world->pos.y + (world->dir.y * MOVE) + OFF_WALL);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+	}
+	if (dir == DOWN)
+	{
+		if (comp == X)
+		{
+			if (world->dir.x < 0.0)
+				new_x = (int)(world->pos.x - (world->dir.x * MOVE) + OFF_WALL);
+			else
+				new_x = (int)(world->pos.x - (world->dir.x * MOVE) - OFF_WALL);
+			new_y = (int)(world->pos.y);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+		else
+		{
+			new_x = (int)(world->pos.x);
+			if (world->dir.y < 0.0)
+				new_y = (int)(world->pos.y - (world->dir.y * MOVE) + OFF_WALL);
+			else
+				new_y = (int)(world->pos.y - (world->dir.y * MOVE) - OFF_WALL);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+	}
+	if (dir == LEFT)
+	{
+		if (comp == X)
+		{
+			if (world->plane.x < 0.0)
+				new_x = (int)(world->pos.x + (world->plane.x * MOVE) - OFF_WALL);
+			else
+				new_x = (int)(world->pos.x + (world->plane.x * MOVE) + OFF_WALL);
+			new_y = (int)(world->pos.y);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+		else
+		{
+			new_x = (int)(world->pos.x);
+			if (world->plane.y < 0.0)
+				new_y = (int)(world->pos.y + (world->plane.y * MOVE) - OFF_WALL);
+			else
+				new_y = (int)(world->pos.y + (world->plane.y * MOVE) + OFF_WALL);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+	}
+	if (dir == RIGHT)
+	{
+		if (comp == X)
+		{
+			if (world->plane.x < 0.0)
+				new_x = (int)(world->pos.x - (world->plane.x * MOVE) + OFF_WALL);
+			else
+				new_x = (int)(world->pos.x - (world->plane.x * MOVE) - OFF_WALL);
+			new_y = (int)(world->pos.y);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+		else
+		{
+			new_x = (int)(world->pos.x);
+			if (world->plane.y < 0.0)
+				new_y = (int)(world->pos.y - (world->plane.y * MOVE) + OFF_WALL);
+			else
+				new_y = (int)(world->pos.y - (world->plane.y * MOVE) - OFF_WALL);
+			if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x] == '2')
+				return (0);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 void	modif_position(t_world *world, int dir)
 {
 	if (dir == UP)
 	{
-		world->pos.x += MOVE * world->dir.x;
-		world->pos.y += MOVE * world->dir.y;
+		if (can_do_comp(world, dir, X))
+			world->pos.x += MOVE * world->dir.x;
+		if (can_do_comp(world, dir, Y))
+			world->pos.y += MOVE * world->dir.y;
 	}
 	if (dir == DOWN)
 	{
-		world->pos.x -= MOVE * world->dir.x;
-		world->pos.y -= MOVE * world->dir.y;
+		if (can_do_comp(world, dir, X))
+			world->pos.x -= MOVE * world->dir.x;
+		if (can_do_comp(world, dir, Y))
+			world->pos.y -= MOVE * world->dir.y;
 	}
 	if (dir == LEFT)
 	{
-		world->pos.x += MOVE * world->plane.x;
-		world->pos.y += MOVE * world->plane.y;
+		if (can_do_comp(world, dir, X))
+			world->pos.x += MOVE * world->plane.x;
+		if (can_do_comp(world, dir, Y))
+			world->pos.y += MOVE * world->plane.y;
 	}
 	if (dir == RIGHT)
 	{
-		world->pos.x -= MOVE * world->plane.x;
-		world->pos.y -= MOVE * world->plane.y;
+		if (can_do_comp(world, dir, X))
+			world->pos.x -= MOVE * world->plane.x;
+		if (can_do_comp(world, dir, Y))
+			world->pos.y -= MOVE * world->plane.y;
 	}
 }
 

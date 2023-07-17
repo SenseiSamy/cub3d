@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/17 16:10:42 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:29:39 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,18 @@
 # endif
 
 # define MOVE 0.05
-# define OFF_WALL 0.4
+# define OFF_WALL 0.3
 
-enum Direction {
+enum direction {
     UP,
 	DOWN,
 	LEFT,
 	RIGHT
+};
+
+enum comp {
+	X,
+	Y
 };
 
 typedef struct s_keyboard

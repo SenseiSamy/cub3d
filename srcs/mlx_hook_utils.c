@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:51:36 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/17 18:48:01 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:07:39 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,23 +99,23 @@ int	can_move_in_dir(t_world *world, int dir)
 
 	if (dir == UP)
 	{
-		new_x = (int)(world->pos.x + ((MOVE + OFF_WALL) * world->dir.x));
-		new_y = (int)(world->pos.y + ((MOVE + OFF_WALL) * world->dir.y));
+		new_x = (int)(world->pos.x + ((MOVE * world->dir.x)));
+		new_y = (int)(world->pos.y + ((MOVE * world->dir.y)));
 	}
 	else if (dir == DOWN)
 	{
-		new_x = (int)(world->pos.x - ((MOVE + OFF_WALL) * world->dir.x));
-		new_y = (int)(world->pos.y - ((MOVE + OFF_WALL) * world->dir.y));
+		new_x = (int)(world->pos.x - ((MOVE * world->dir.x)));
+		new_y = (int)(world->pos.y - ((MOVE * world->dir.y)));
 	}
 	else if (dir == RIGHT)
 	{
-		new_x = (int)(world->pos.x - ((MOVE + OFF_WALL) * world->plane.x));
-		new_y = (int)(world->pos.y - ((MOVE + OFF_WALL) * world->plane.y));
+		new_x = (int)(world->pos.x - ((MOVE * world->plane.x)));
+		new_y = (int)(world->pos.y - ((MOVE * world->plane.y)));
 	}
 	else if (dir == LEFT)
 	{
-		new_x = (int)(world->pos.x + ((MOVE + OFF_WALL) * world->plane.x));
-		new_y = (int)(world->pos.y + ((MOVE + OFF_WALL) * world->plane.y));
+		new_x = (int)(world->pos.x + ((MOVE * world->plane.x)));
+		new_y = (int)(world->pos.y + ((MOVE * world->plane.y)));
 	}
 	else
 	{
