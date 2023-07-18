@@ -6,34 +6,11 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:28:21 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/16 19:57:01 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:16:31 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
-typedef struct	s_raycast
-{
-	double		camera_x;
-	t_vector	raydir;
-	int			map_x;
-	int			map_y;
-	t_vector	sidedist;
-	t_vector	deltadist;
-	double		perpwalldist;
-	int			step_x;
-	int			step_y;
-	int			hit;
-	int			side;
-	int			lineheight;
-	int			drawstart;
-	int			drawend;
-	double		wall_x;
-	int			tex_x;
-	int			tex_y;
-	double		step;
-	double		tex_pos;
-}			t_raycast;
+#include "raycast.h"
 
 static t_image	*get_wall_text(t_raycast *r, t_world *world, char wall)
 {
@@ -163,6 +140,5 @@ int	raycast(t_world *world)
 		++x;
 	}
 	mlx_put_image_to_window(world->mlx, world->mlx_win, world->frame.img, 0, 0);
-	//printf("pos: %lf %lf\ndir: %lf %lf\nangle: %lf\n\n", world->pos.x, world->pos.y, world->dir.x, world->dir.y, atan2(world->dir.y, world->dir.x) * 180 / M_PI + 180);
 	return (EXIT_SUCCESS);
 }
