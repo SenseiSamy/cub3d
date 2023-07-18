@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:18:07 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/16 19:37:59 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:14:40 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_image	open_sprite(t_world *world, char *path)
 	sprite.img = mlx_xpm_file_to_image(world->mlx, path, &sprite.w,
 			&sprite.h);
 	sprite.addr = mlx_get_data_addr(sprite.img, &sprite.bits_per_pixel,
-		&sprite.line_length, &sprite.endian);
+			&sprite.line_length, &sprite.endian);
 	return (sprite);
 }
 
@@ -33,7 +33,6 @@ void	put_pixel_to_img(t_image *img, int x, int y, int color)
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
-
 
 int	get_pixel_from_img(t_image *img, int x, int y)
 {

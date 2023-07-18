@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:11:14 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/18 18:49:08 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:15:04 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	texture(t_raycast *r, t_world *world, int x, char wall)
 	else
 		r->perpwalldist = r->sidedist.y - r->deltadist.y;
 	r->perpwalldist *= cos(atan2(world->dir.y, world->dir.x)
-		- atan2(r->raydir.y, r->raydir.x));
+			- atan2(r->raydir.y, r->raydir.x));
 	r->lineheight = (int)((double)WINDOW_H / r->perpwalldist);
 	r->drawstart = -r->lineheight / 2 + WINDOW_H / 2;
 	if (r->drawstart < 0)

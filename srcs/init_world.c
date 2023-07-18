@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/17 19:40:58 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:14:25 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	init_mlx(t_world *world)
 	world->frame.w = WINDOW_W;
 	world->frame.h = WINDOW_H;
 	world->frame.addr = mlx_get_data_addr(world->frame.img,
-		&world->frame.bits_per_pixel, &world->frame.line_length,
-		&world->frame.endian);
+			&world->frame.bits_per_pixel, &world->frame.line_length,
+			&world->frame.endian);
 	mlx_do_key_autorepeatoff(world->mlx);
 	clear_image(world);
 	return (EXIT_SUCCESS);
