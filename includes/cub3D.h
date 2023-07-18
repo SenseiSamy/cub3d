@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/18 14:29:03 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/18 16:05:42 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@
 # define OFF_WALL 0.3
 # define GREY 0x00808080
 # define BLACK 0x00191919
+# define VIOLET 0x007F00FF
+# define SILVER 0x00C0C0C0
+# define NAVY 0x00000080
 
 enum direction {
     UP,
