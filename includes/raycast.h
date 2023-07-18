@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:15:09 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/18 18:16:53 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:45:40 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ typedef struct	s_raycast
 }			t_raycast;
 
 t_image	*get_wall_text(t_raycast *r, t_world *world, char wall);
+void	texture(t_raycast *r, t_world *world, int x, char wall);
 
 #endif

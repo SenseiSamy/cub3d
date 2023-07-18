@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 14:21:26 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/16 19:50:19 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:04:34 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ int	set_elem(t_world *world, char *line)
 	else
 		return (ft_dprintf(2, "Error\nFailed to get element in this line: "
 				"'%s'\n", line), ft_freearray((void **)split), EXIT_FAILURE);
-	ft_freearray((void **)split);
-	return (EXIT_SUCCESS);
+	return (ft_freearray((void **)split), EXIT_SUCCESS);
 }
 
 int	verif_elem(t_world *world)
