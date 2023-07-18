@@ -6,7 +6,7 @@
 #    By: wmari <wmari@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/07/17 19:39:28 by wmari            ###   ########.fr        #
+#    Updated: 2023/07/18 11:59:30 by wmari            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS	= srcs/main.c\
 		srcs/image_utils.c\
 		srcs/utils.c\
 		srcs/init_world.c\
-		srcs/mlx_hook_utils.c
+		srcs/mlx_hook_utils.c\
+		srcs/minimap.c
 OBJS	= $(patsubst srcs/%.c, bin/%.o, $(SRCS))
 NAME	= cub3D
 

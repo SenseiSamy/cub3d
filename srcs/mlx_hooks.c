@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/17 19:28:03 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/18 12:25:14 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int	main_loop(t_world *world)
 	{
 		hook_key_press(world);
 		raycast(world);
+		draw_circle(world);
 		world->refresh = 0;
 	}
 	return (EXIT_SUCCESS);
