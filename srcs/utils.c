@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:36:23 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/18 18:06:04 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/20 11:41:08 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	free_world(t_world *world)
 		mlx_destroy_image(world->mlx, world->southwall.img);
 	if (world->southwall.img)
 		mlx_destroy_image(world->mlx, world->eastwall.img);
+	if (world->door.img)
+		mlx_destroy_image(world->mlx, world->door.img);
 	if (world->frame.img)
 		mlx_destroy_image(world->mlx, world->frame.img);
 	if (world->map)
