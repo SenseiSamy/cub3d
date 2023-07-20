@@ -6,13 +6,13 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:45:42 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/20 15:41:27 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/20 16:02:23 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	coord_in_map(t_world *world, int x, int y)
+static int	coord_in_map(t_world *world, int x, int y)
 {
 	int	dx;
 	int	dy;
@@ -54,7 +54,7 @@ static void	draw_player(t_world *world)
 	}
 }
 
-void	color_circle(t_world *world, int xi, int yi)
+static void	color_circle(t_world *world, int xi, int yi)
 {
 	if (!coord_in_map(world, (int)(world->pos.x + (xi / 10)),
 		(int)(world->pos.y + (yi / 10))))
