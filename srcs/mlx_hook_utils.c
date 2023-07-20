@@ -6,12 +6,11 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:51:36 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/17 19:07:39 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:04:19 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 
 // deboggage
 void	print_world(t_world *world)
