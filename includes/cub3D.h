@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/18 16:05:42 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/20 13:19:43 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE 0.02
+# define MOVE 0.05
 # define OFF_WALL 0.3
 # define GREY 0x00808080
 # define BLACK 0x00191919
@@ -152,6 +152,6 @@ int		can_move_in_dir(t_world *world, int dir);
 void	modif_position(t_world *world, int dir);
 void	rotate_cam(t_world *world, double value);
 void	door_use(t_world *world);
-
-void	draw_circle(t_world *world);
+int		can_do_comp(t_world *world, int dir, int comp);
+void	draw_minimap(t_world *world);
 #endif
