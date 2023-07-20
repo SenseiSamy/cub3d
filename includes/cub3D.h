@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/20 13:19:43 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/20 15:30:53 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,14 @@ typedef struct	s_image
 	int		h;
 }				t_image;
 
+typedef struct s_minimap
+{
+	int	center_x;
+	int	center_y;
+	int	radius;
+}				t_minimap;
+
+
 typedef struct	s_world
 {
 	void		*mlx;
@@ -119,6 +127,7 @@ typedef struct	s_world
 	t_image		frame;
 	t_keyboard	keys;
 	int			refresh;
+	t_minimap	minimap;
 }				t_world;
 
 int		open_file(const char *file_name);

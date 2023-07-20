@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/18 19:14:25 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/20 15:32:05 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ static void	init_player(t_world *world)
 		rotate_cam(world, M_PI);
 }
 
+static void	init_minimap(t_world *world)
+{
+	world->minimap.center_x = WINDOW_W / 8;
+	world->minimap.center_y = WINDOW_H * 5 / 6;
+	if (world->minimap.center_x < world->minimap.center_y)
+		world->minimap.radius = world->minimap.center_x / 2;
+	else
+		world->minimap.radius = world->minimap.center_y / 2;
+}
+
 int	init_world(int argc, char **argv, t_world *world)
 {
 	ft_bzero(world, sizeof (*world));
@@ -77,5 +87,6 @@ int	init_world(int argc, char **argv, t_world *world)
 		return (EXIT_FAILURE);
 	init_player(world);
 	init_keys(world);
+	init_minimap(world);
 	return (EXIT_SUCCESS);
 }
