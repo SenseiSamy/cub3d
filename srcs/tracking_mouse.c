@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tracking_mouse.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:21:01 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 14:16:55 by wmari            ###   ########.fr       */
+/*   Created: 2023/07/21 13:44:41 by wmari             #+#    #+#             */
+/*   Updated: 2023/07/21 14:14:29 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char **argv)
+int	tracking_mouse(t_world *world)
 {
-	t_world	world;
+	int	new_x;
+	int	new_y;
 
-	if (init_world(argc, argv, &world) == EXIT_FAILURE)
-		exit_cub3d(&world);
-	raycast(&world);
-	draw_minimap(&world);
-	set_hooks(&world);
-	mlx_hook(world.mlx, MotionNotify, PointerMotionMask, tracking_mouse, &world);
-	mlx_loop_hook(world.mlx, main_loop, &world);
-	mlx_loop(world.mlx);
+	mlx_mouse_get_pos(world->mlx, world->mlx_win, &new_x, &new_y);
+	if (new_x < world->mouse.x)
+	{
+		while (new_x++ < world->mouse.x)
+			rotate_cam(world, -MOVE * MOUSE_SENSI);
+
+	}
+	else
+	{
+		while (new_x-- > world->mouse.x)
+			rotate_cam(world, MOVE * MOUSE_SENSI);
+	}
+	mlx_mouse_move(world->mlx, world->mlx_win, WINDOW_W / 2, WINDOW_H / 2);
 	return (0);
 }

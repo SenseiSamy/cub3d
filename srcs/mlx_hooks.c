@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/20 16:21:30 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:17:10 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int	main_loop(t_world *world)
 		draw_minimap(world);
 		world->refresh = 0;
 	}
+	tracking_mouse(world);
 	return (EXIT_SUCCESS);
 }

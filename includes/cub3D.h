@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/20 15:30:53 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:08:54 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "mlx.h"
+# include "mlx_int.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -50,8 +51,10 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE 0.05
+# define MOVE 0.03
 # define OFF_WALL 0.3
+# define MOUSE_SENSI 0.1
+
 # define GREY 0x00808080
 # define BLACK 0x00191919
 # define VIOLET 0x007F00FF
@@ -106,6 +109,11 @@ typedef struct s_minimap
 	int	radius;
 }				t_minimap;
 
+typedef struct	s_mouse
+{
+	int	x;
+	int	y;
+}				t_mouse;
 
 typedef struct	s_world
 {
@@ -128,6 +136,7 @@ typedef struct	s_world
 	t_keyboard	keys;
 	int			refresh;
 	t_minimap	minimap;
+	t_mouse		mouse;
 }				t_world;
 
 int		open_file(const char *file_name);
@@ -163,4 +172,5 @@ void	rotate_cam(t_world *world, double value);
 void	door_use(t_world *world);
 int		can_do_comp(t_world *world, int dir, int comp);
 void	draw_minimap(t_world *world);
+int		tracking_mouse(t_world *world);
 #endif
