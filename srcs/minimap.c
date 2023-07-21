@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:45:42 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/20 16:02:23 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/21 18:35:03 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	draw_player(t_world *world)
 	int	xi;
 	int	yi;
 
-	circle_radius = world->minimap.radius / 10;
+	circle_radius = world->minimap.radius * MINIMAP_ZOOM * 0.8;
 	yi = -circle_radius;
 	while (yi <= circle_radius)
 	{
@@ -56,20 +56,20 @@ static void	draw_player(t_world *world)
 
 static void	color_circle(t_world *world, int xi, int yi)
 {
-	if (!coord_in_map(world, (int)(world->pos.x + (xi / 10)),
-		(int)(world->pos.y + (yi / 10))))
+	if (!coord_in_map(world, (int)(world->pos.x + (xi * MINIMAP_ZOOM)),
+		(int)(world->pos.y + (yi * MINIMAP_ZOOM))))
 		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
 			world->minimap.center_y + yi, NAVY);
-	else if (world->map[(int)(world->pos.y + (yi / 10))]
-		[(int)(world->pos.x + (xi / 10))] == '1')
+	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
+		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '1')
 		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
 			world->minimap.center_y + yi, VIOLET);
-	else if (world->map[(int)(world->pos.y + (yi / 10))]
-		[(int)(world->pos.x + (xi / 10))] == ' ')
+	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
+		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == ' ')
 		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
 			world->minimap.center_y + yi, NAVY);
-	else if (world->map[(int)(world->pos.y + (yi / 10))]
-		[(int)(world->pos.x + (xi / 10))] == '2')
+	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
+		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '2')
 		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
 			world->minimap.center_y + yi, GREY);
 	else

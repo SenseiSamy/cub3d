@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:15:09 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/18 18:45:40 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/21 18:37:31 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAYCAST_H
 # include "cub3D.h"
 
-typedef struct	s_raycast
+typedef struct s_raycast
 {
 	double		camera_x;
 	t_vector	raydir;

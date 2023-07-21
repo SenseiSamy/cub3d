@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 16:13:42 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/21 18:37:19 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 
 # define MOVE 0.03
 # define OFF_WALL 0.3
+# define MINIMAP_ZOOM 0.1
 # define MOUSE_SENSI 0.1
 
 # define GREY 0x00808080
@@ -61,14 +62,14 @@
 # define SILVER 0x00C0C0C0
 # define NAVY 0x00000080
 
-enum direction {
-    UP,
+enum e_direction {
+	UP,
 	DOWN,
 	LEFT,
 	RIGHT
 };
 
-enum comp {
+enum e_comp {
 	X,
 	Y
 };
@@ -85,13 +86,13 @@ typedef struct s_keyboard
 	int	escape;
 }				t_keyboard;
 
-typedef struct	s_vector
+typedef struct s_vector
 {
 	double	x;
 	double	y;
 }				t_vector;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	void	*img;
 	char	*addr;
@@ -109,13 +110,13 @@ typedef struct s_minimap
 	int	radius;
 }				t_minimap;
 
-typedef struct	s_mouse
+typedef struct s_mouse
 {
 	int	x;
 	int	y;
 }				t_mouse;
 
-typedef struct	s_world
+typedef struct s_world
 {
 	void		*mlx;
 	void		*mlx_win;
@@ -148,7 +149,7 @@ int		read_map(t_world *world, int fd, char *line);
 bool	is_map(char *line);
 int		verif_map(char **map);
 int		get_start_pos(char **map, int *x, int *y);
-int 	read_elem(t_world *world, int fd);
+int		read_elem(t_world *world, int fd);
 int		parse(t_world *world, char *file_name);
 int		init_world(int argc, char **argv, t_world *world);
 void	free_world(t_world *world);
