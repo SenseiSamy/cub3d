@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 14:08:54 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/21 16:13:42 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct	s_world
 	int			refresh;
 	t_minimap	minimap;
 	t_mouse		mouse;
+	int			focus;
 }				t_world;
 
 int		open_file(const char *file_name);
@@ -173,4 +174,5 @@ void	door_use(t_world *world);
 int		can_do_comp(t_world *world, int dir, int comp);
 void	draw_minimap(t_world *world);
 int		tracking_mouse(t_world *world);
+int		mouse_changing_pos(int x, int y, t_world *world);
 #endif

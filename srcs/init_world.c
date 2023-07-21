@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 13:59:21 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/21 16:17:14 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	init_keys(t_world *world)
 	world->keys.right = 0;
 	world->mouse.x = WINDOW_W / 2;
 	world->mouse.y = WINDOW_H / 2;
+	world->focus = 1;
 }
 
 static int	init_mlx(t_world *world)

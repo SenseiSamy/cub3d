@@ -6,29 +6,35 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:44:41 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 14:14:29 by wmari            ###   ########.fr       */
+/*   Updated: 2023/07/21 17:19:36 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+int	mouse_changing_pos(int x, int y, t_world *world)
+{
+	world->mouse.x = x;
+	world->mouse.y = y;
+	return (0);
+}
+
 int	tracking_mouse(t_world *world)
 {
-	int	new_x;
-	int	new_y;
-
-	mlx_mouse_get_pos(world->mlx, world->mlx_win, &new_x, &new_y);
-	if (new_x < world->mouse.x)
+	if (world->focus == 0)
 	{
-		while (new_x++ < world->mouse.x)
-			rotate_cam(world, -MOVE * MOUSE_SENSI);
-
+		if (world->mouse.x < WINDOW_W / 2)
+		{
+			while (world->mouse.x++ < WINDOW_W / 2)
+				rotate_cam(world, -MOVE * MOUSE_SENSI);
+		}
+		else
+		{
+			while (world->mouse.x-- > WINDOW_W / 2)
+				rotate_cam(world, MOVE * MOUSE_SENSI);
+		}
+		world->mouse.x = WINDOW_W / 2;
+		mlx_mouse_move(world->mlx, world->mlx_win, WINDOW_W / 2, WINDOW_H / 2);
 	}
-	else
-	{
-		while (new_x-- > world->mouse.x)
-			rotate_cam(world, MOVE * MOUSE_SENSI);
-	}
-	mlx_mouse_move(world->mlx, world->mlx_win, WINDOW_W / 2, WINDOW_H / 2);
 	return (0);
 }
