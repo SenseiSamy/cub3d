@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 18:37:19 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/11 19:50:38 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,23 @@ typedef struct s_image
 	int		h;
 }				t_image;
 
+typedef struct s_anim
+{
+	t_image			*frames;
+	int				current_frame;
+	size_t			next_frame_time;
+}				t_anim;
+
+typedef struct s_texture
+{
+	int		type;
+	union
+	{
+		t_image	image;
+		t_anim	anim;
+	};
+}				t_texture;
+
 typedef struct s_minimap
 {
 	int	center_x;
@@ -118,27 +135,27 @@ typedef struct s_mouse
 
 typedef struct s_world
 {
-	void		*mlx;
-	void		*mlx_win;
-	t_image		northwall;
-	t_image		southwall;
-	t_image		eastwall;
-	t_image		westwall;
-	t_image		door;
-	int			floor_color;
-	int			ceiling_color;
-	int			width;
-	int			height;
-	char		**map;
-	t_vector	pos;
-	t_vector	dir;
-	t_vector	plane;
-	t_image		frame;
-	t_keyboard	keys;
-	int			refresh;
-	t_minimap	minimap;
-	t_mouse		mouse;
-	int			focus;
+	void			*mlx;
+	void			*mlx_win;
+	t_texture		northwall;
+	t_texture		southwall;
+	t_texture		eastwall;
+	t_texture		westwall;
+	t_texture		door;
+	int				floor_color;
+	int				ceiling_color;
+	int				width;
+	int				height;
+	char			**map;
+	t_vector		pos;
+	t_vector		dir;
+	t_vector		plane;
+	t_image			frame;
+	t_keyboard		keys;
+	int				refresh;
+	t_minimap		minimap;
+	t_mouse			mouse;
+	int				focus;
 }				t_world;
 
 int		open_file(const char *file_name);
