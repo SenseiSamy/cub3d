@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/11 19:50:38 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/12 17:28:23 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "libft.h"
 # include <stdbool.h>
 # include <errno.h>
+# include <sys/time.h>
 
 # define WINDOW_W 1280
 # define WINDOW_H 720
@@ -61,6 +62,8 @@
 # define VIOLET 0x007F00FF
 # define SILVER 0x00C0C0C0
 # define NAVY 0x00000080
+
+# define ANIM_DELAY 250000
 
 enum e_direction {
 	UP,
@@ -106,8 +109,9 @@ typedef struct s_image
 typedef struct s_anim
 {
 	t_image			*frames;
+	int				nb_frames;
 	int				current_frame;
-	size_t			next_frame_time;
+	struct timeval	frame_time;
 }				t_anim;
 
 typedef struct s_texture
@@ -158,39 +162,44 @@ typedef struct s_world
 	int				focus;
 }				t_world;
 
-int		open_file(const char *file_name);
-t_image	open_sprite(t_world *world, char *path);
-int		get_color(char *str);
-int		rgb(int r, int g, int b);
-int		read_map(t_world *world, int fd, char *line);
-bool	is_map(char *line);
-int		verif_map(char **map);
-int		get_start_pos(char **map, int *x, int *y);
-int		read_elem(t_world *world, int fd);
-int		parse(t_world *world, char *file_name);
-int		init_world(int argc, char **argv, t_world *world);
-void	free_world(t_world *world);
-int		exit_cub3d(t_world *world);
-void	rotate_cam(t_world *world, double value);
+int			open_file(const char *file_name);
+t_image		open_sprite(t_world *world, char *path);
+t_anim		open_anim(t_world *world, char *path);
+void		free_anim(t_world *world, t_anim *anim);
+t_texture	open_texture(t_world *world, char *path);
+void		free_texture(t_world *world, t_texture *texture);
+int			get_color(char *str);
+int			rgb(int r, int g, int b);
+int			read_map(t_world *world, int fd, char *line);
+bool		is_map(char *line);
+int			verif_map(char **map);
+int			get_start_pos(char **map, int *x, int *y);
+int			read_elem(t_world *world, int fd);
+int			parse(t_world *world, char *file_name);
+int			init_world(int argc, char **argv, t_world *world);
+void		free_world(t_world *world);
+int			exit_cub3d(t_world *world);
+void		rotate_cam(t_world *world, double value);
+size_t		time_passed(t_world *world, struct timeval time);
 
-void	put_pixel_to_img(t_image *img, int x, int y, int color);
-int		get_pixel_from_img(t_image *img, int x, int y);
-void	clear_image(t_world *world);
+void		put_pixel_to_img(t_image *img, int x, int y, int color);
+int			get_pixel_from_img(t_image *img, int x, int y);
+void		clear_image(t_world *world);
 
 int		raycast(t_world *world);
 /*_________________MLX_HOOKS________________*/
-int		main_loop(t_world *world);
-void	set_hooks(t_world *world);
-int		hook_key_press(t_world *world);
-int		keyrelease(int keycode, t_world *world);
-int		keypresses(int keycode, t_world *world);
-int		keys_is_not_pressed(t_world *world);
-int		can_move_in_dir(t_world *world, int dir);
-void	modif_position(t_world *world, int dir);
-void	rotate_cam(t_world *world, double value);
-void	door_use(t_world *world);
-int		can_do_comp(t_world *world, int dir, int comp);
-void	draw_minimap(t_world *world);
-int		tracking_mouse(t_world *world);
-int		mouse_changing_pos(int x, int y, t_world *world);
+int			main_loop(t_world *world);
+void		set_hooks(t_world *world);
+int			hook_key_press(t_world *world);
+int			keyrelease(int keycode, t_world *world);
+int			keypresses(int keycode, t_world *world);
+int			keys_is_not_pressed(t_world *world);
+int			can_move_in_dir(t_world *world, int dir);
+void		modif_position(t_world *world, int dir);
+void		rotate_cam(t_world *world, double value);
+void		door_use(t_world *world);
+int			can_do_comp(t_world *world, int dir, int comp);
+void		draw_minimap(t_world *world);
+int			tracking_mouse(t_world *world);
+int			mouse_changing_pos(int x, int y, t_world *world);
 #endif

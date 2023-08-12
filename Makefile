@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wmari <wmari@student.42.fr>                +#+  +:+       +#+         #
+#    By: snaji <snaji@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/07/21 13:45:06 by wmari            ###   ########.fr        #
+#    Updated: 2023/08/12 17:29:01 by snaji            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS	= srcs/main.c\
 		srcs/minimap.c\
 		srcs/collision.c\
 		srcs/movement.c\
-		srcs/tracking_mouse.c
+		srcs/tracking_mouse.c\
+		srcs/texture.c\
+		srcs/open_anim.c
 		
 OBJS	= $(patsubst srcs/%.c, bin/%.o, $(SRCS))
 NAME	= cub3D
