@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/21 17:27:25 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/13 18:16:06 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ void	set_hooks(t_world *world)
 
 int	main_loop(t_world *world)
 {
-	if ((!keys_is_not_pressed(world)
-			|| world->mouse.x != WINDOW_W / 2) && world->focus == 0)
-	{
+	// if ((!keys_is_not_pressed(world)
+	// 		|| world->mouse.x != WINDOW_W / 2) && world->focus == 0)
+	// {
 		hook_key_press(world);
 		tracking_mouse(world);
 		raycast(world);
 		draw_minimap(world);
 		world->refresh = 0;
-	}
+	// }
 	return (EXIT_SUCCESS);
 }

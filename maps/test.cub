@@ -1,6 +1,6 @@
- NO north.xpm
- SO south.xpm
- WE west.xpm
+ NO marin/marin_part1.xpm
+ SO marin/marin.xpm
+ WE testtext.xpm
  EA east.xpm
  DO door.xpm
 

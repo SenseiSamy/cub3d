@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/12 17:28:23 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/13 18:17:13 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define SILVER 0x00C0C0C0
 # define NAVY 0x00000080
 
-# define ANIM_DELAY 250000
+# define ANIM_DELAY 25000
 
 enum e_direction {
 	UP,
