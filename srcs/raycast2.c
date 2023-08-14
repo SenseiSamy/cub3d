@@ -6,34 +6,51 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:11:14 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/18 19:15:04 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/12 17:37:16 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-t_image	*get_wall_text(t_raycast *r, t_world *world, char wall)
+static t_image	*get_img_from_texture(t_world *world, t_texture *tex)
+{
+	if (tex->type == 0)
+		return (&tex->image);
+	else
+	{
+		if (time_passed(world, tex->anim.frame_time) > ANIM_DELAY)
+		{
+			tex->anim.current_frame = (tex->anim.current_frame + 1)
+				% tex->anim.nb_frames;
+			if (gettimeofday(&tex->anim.frame_time, NULL) == -1)
+				exit_cub3d(world);
+		}
+		return (&tex->anim.frames[tex->anim.current_frame]);
+	}
+}
+
+static t_image	*get_wall_text(t_raycast *r, t_world *world, char wall)
 {
 	double	angle;
 
 	angle = atan2(r->raydir.y, r->raydir.x) * 180 / M_PI + 180;
 	if (wall == '2')
-		return (&world->door);
+		return (get_img_from_texture(world, &world->door));
 	if (r->side == 1)
 	{
 		if (angle < 180.0)
-			return (&world->southwall);
-		return (&world->northwall);
+			return (get_img_from_texture(world, &world->southwall));
+		return (get_img_from_texture(world, &world->northwall));
 	}
 	else
 	{
 		if (angle >= 90.0 && angle <= 270.0)
-			return (&world->westwall);
-		return (&world->eastwall);
+			return (get_img_from_texture(world, &world->westwall));
+		return (get_img_from_texture(world, &world->eastwall));
 	}
 }
 
-static void inline	texture2(t_raycast *r, t_world *world, int x,
+inline static void	texture2(t_raycast *r, t_world *world, int x,
 	const t_image *tex)
 {
 	int	y;

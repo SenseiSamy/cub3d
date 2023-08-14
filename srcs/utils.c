@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:36:23 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/21 14:22:08 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/12 17:27:06 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+size_t	time_passed(t_world *world, struct timeval time)
+{
+	size_t			time_ms;
+	struct timeval	current_time;
+
+	if (gettimeofday(&current_time, NULL) == -1)
+		exit_cub3d(world);
+	time_ms = (current_time.tv_sec * 1000000 + current_time.tv_usec)
+		- (time.tv_sec * 1000000 + time.tv_usec);
+	return (time_ms);
+}
+
 void	free_world(t_world *world)
 {
-	if (world->northwall.img)
-		mlx_destroy_image(world->mlx, world->northwall.img);
-	if (world->westwall.img)
-		mlx_destroy_image(world->mlx, world->westwall.img);
-	if (world->southwall.img)
-		mlx_destroy_image(world->mlx, world->southwall.img);
-	if (world->southwall.img)
-		mlx_destroy_image(world->mlx, world->eastwall.img);
-	if (world->door.img)
-		mlx_destroy_image(world->mlx, world->door.img);
+	free_texture(world, &world->northwall);
+	free_texture(world, &world->westwall);
+	free_texture(world, &world->southwall);
+	free_texture(world, &world->eastwall);
+	free_texture(world, &world->door);
 	if (world->frame.img)
 		mlx_destroy_image(world->mlx, world->frame.img);
 	if (world->map)
