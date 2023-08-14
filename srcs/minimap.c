@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:45:42 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 18:35:03 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/14 15:10:09 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ static void	color_circle(t_world *world, int xi, int yi)
 		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '2')
 		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
 			world->minimap.center_y + yi, GREY);
+	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
+		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '3')
+		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
+			world->minimap.center_y + yi, GREY + 0x00151515);
 	else
 		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
 			world->minimap.center_y + yi, SILVER);
