@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/13 18:17:13 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/14 16:36:02 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ typedef struct s_world
 	t_vector		plane;
 	t_image			frame;
 	t_keyboard		keys;
-	int				refresh;
 	t_minimap		minimap;
 	t_mouse			mouse;
 	int				focus;

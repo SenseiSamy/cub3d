@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:11:14 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/13 18:29:58 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/14 16:22:26 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ inline static void	texture2(t_raycast *r, t_world *world, int x,
 	y = r->drawstart;
 	while (y < r->drawend)
 	{
-		r->tex_y = (int)r->tex_pos & (tex->h - 1);
+		r->tex_y = (int)r->tex_pos/* & (tex->h - 1)*/;
 		r->tex_pos += r->step;
 		put_pixel_to_img(&world->frame, x, y,
 			get_pixel_from_img(tex, r->tex_x, r->tex_y));

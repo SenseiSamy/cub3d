@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/13 18:16:06 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/14 16:36:32 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	hook_key_press(t_world *world)
 {
 	if (!keys_is_not_pressed(world))
 	{
-		world->refresh = 1;
 		if (world->keys.escape)
 			exit_cub3d(world);
 		if (world->keys.up)
@@ -74,14 +73,9 @@ void	set_hooks(t_world *world)
 
 int	main_loop(t_world *world)
 {
-	// if ((!keys_is_not_pressed(world)
-	// 		|| world->mouse.x != WINDOW_W / 2) && world->focus == 0)
-	// {
-		hook_key_press(world);
-		tracking_mouse(world);
-		raycast(world);
-		draw_minimap(world);
-		world->refresh = 0;
-	// }
+	hook_key_press(world);
+	tracking_mouse(world);
+	raycast(world);
+	draw_minimap(world);
 	return (EXIT_SUCCESS);
 }
