@@ -2,7 +2,7 @@
  SO south.xpm
  WE west.xpm
  EA east.xpm
- DO door.xpm
+ DO marin/marin_part1.xpm
 
  F 50,256,168
  C 189,56,207

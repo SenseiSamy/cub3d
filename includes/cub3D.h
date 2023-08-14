@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/14 18:08:15 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/14 18:12:39 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define SILVER 0x00C0C0C0
 # define NAVY 0x00000080
 
-# define ANIM_DELAY 250000
+# define ANIM_DELAY 25000
 
 enum e_direction {
 	UP,
@@ -156,7 +156,6 @@ typedef struct s_world
 	t_vector		plane;
 	t_image			frame;
 	t_keyboard		keys;
-	int				refresh;
 	t_minimap		minimap;
 	t_mouse			mouse;
 	int				focus;

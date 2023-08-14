@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:45:42 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/14 17:38:50 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/14 18:12:18 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,44 @@ static void	draw_player(t_world *world)
 	}
 }
 
+static void	rotate_point(t_world *world, int *x, int *y)
+{
+	int		tmp;
+	double	angle;
+
+	tmp = *x;
+	angle = -(atan2(world->dir.y, world->dir.x) + M_PI / 2);
+	*x = (int)(*x * cos(angle) - *y * sin(angle));
+	*y = (int)(tmp * sin(angle) + *y * cos(angle));
+}
+
 static void	color_circle(t_world *world, int xi, int yi)
 {
+	int	rotated_x;
+	int	rotated_y;
+
+	rotated_x = xi;
+	rotated_y = yi;
+	rotate_point(world, &rotated_x, &rotated_y);
 	if (!coord_in_map(world, (int)(world->pos.x + (xi * MINIMAP_ZOOM)),
 		(int)(world->pos.y + (yi * MINIMAP_ZOOM))))
-		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
-			world->minimap.center_y + yi, NAVY);
+		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
+			world->minimap.center_y + rotated_y, NAVY);
 	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
 		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '1')
-		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
-			world->minimap.center_y + yi, VIOLET);
+		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
+			world->minimap.center_y + rotated_y, VIOLET);
 	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
 		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == ' ')
-		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
-			world->minimap.center_y + yi, NAVY);
+		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
+			world->minimap.center_y + rotated_y, NAVY);
 	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
 		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '2')
-		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
-			world->minimap.center_y + yi, GREY);
-	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
-		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '3')
-		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
-			world->minimap.center_y + yi, GREY + 0x00151515);
+		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
+			world->minimap.center_y + rotated_y, GREY);
 	else
-		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
-			world->minimap.center_y + yi, SILVER);
+		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
+			world->minimap.center_y + rotated_y, SILVER);
 }
 
 void	draw_circle(t_world *world)
