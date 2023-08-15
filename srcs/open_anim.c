@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:00:02 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/12 18:37:33 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/15 17:15:15 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	nb_files_anim(char *path)
 		fd = open(file, O_RDONLY);
 		free(file);
 		if (fd == -1)
-			break;
+			break ;
 		close(fd);
 		++i;
 	}

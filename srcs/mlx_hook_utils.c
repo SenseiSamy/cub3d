@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:51:36 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/20 12:25:40 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/15 17:33:04 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,21 @@ int	keys_is_not_pressed(t_world *world)
 
 void	door_use(t_world *world)
 {
-	int	mapx;
-	int	mapy;
+	const int	mapx = (int)(world->pos.x + world->dir.x);
+	const int	mapy = (int)(world->pos.y + world->dir.y);
+	const int	ne[][2] = {{mapx + 1, mapy}, {mapx, mapy + 1}, {mapx - 1, mapy},
+	{mapx, mapy - 1}};
+	int			i;
 
-	mapx = (int)(world->pos.x + world->dir.x);
-	mapy = (int)(world->pos.y + world->dir.y);
+	i = 0;
+	while (i < 4)
+	{
+		if (ne[i][0] < 0 || ne[i][1] < 0 || world->map[ne[i][1]] == NULL
+			|| world->map[ne[i][1]][ne[i][0]] == '\0'
+			|| world->map[ne[i][1]][ne[i][0]] == ' ')
+			return ;
+		++i;
+	}
 	if (world->map[mapy][mapx] == '2')
 		world->map[mapy][mapx] = '3';
 	else if (world->map[mapy][mapx] == '3')

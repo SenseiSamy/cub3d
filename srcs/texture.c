@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:14:07 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/12 17:40:29 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/15 17:14:51 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_image	open_sprite(t_world *world, char *path)
 			&sprite.h);
 	if (sprite.img != NULL)
 		sprite.addr = mlx_get_data_addr(sprite.img, &sprite.bits_per_pixel,
-			&sprite.line_length, &sprite.endian);
+				&sprite.line_length, &sprite.endian);
 	return (sprite);
 }
 
@@ -46,11 +46,15 @@ t_texture	open_texture(t_world *world, char *path)
 	{
 		texture.type = 1;
 		texture.anim = open_anim(world, path);
+		if (texture.anim.frames == NULL)
+			texture.type = -1;
 	}
 	else
 	{
 		texture.type = 0;
 		texture.image = open_sprite(world, path);
+		if (texture.image.img == NULL)
+			texture.type = -1;
 	}
 	return (texture);
 }

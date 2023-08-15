@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:54:10 by snaji             #+#    #+#             */
-/*   Updated: 2023/07/15 16:38:13 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/15 16:16:05 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,21 @@ int	get_color(char *str)
 int	rgb(int r, int g, int b)
 {
 	return (0 << 24 | r << 16 | g << 8 | b);
+}
+
+bool	map_has_door(t_world *world)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (world->map[i])
+	{
+		j = 0;
+		while (world->map[i][j])
+			if (world->map[i][j++] == '2')
+				return (true);
+		++i;
+	}
+	return (false);
 }
