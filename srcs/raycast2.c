@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:11:14 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/15 17:15:31 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/15 20:25:39 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static t_image	*get_img_from_texture(t_world *world, t_texture *tex)
 		return (&tex->image);
 	else
 	{
-		if (time_passed(world, tex->anim.frame_time) > ANIM_DELAY)
+		if (time_passed(world, tex->anim.frame_time) > ANIM_DELAY
+			/ (size_t)tex->anim.nb_frames)
 		{
 			tex->anim.current_frame = (tex->anim.current_frame + 1)
 				% tex->anim.nb_frames;
