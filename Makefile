@@ -6,7 +6,7 @@
 #    By: snaji <snaji@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/08/12 17:29:01 by snaji            ###   ########.fr        #
+#    Updated: 2023/08/19 19:56:31 by snaji            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS	= srcs/main.c\
 		srcs/open_anim.c
 		
 OBJS	= $(patsubst srcs/%.c, bin/%.o, $(SRCS))
+DEPS	= includes/cub3D.h includes/raycast.h
 NAME	= cub3D
 
 all: $(NAME)
@@ -45,9 +46,9 @@ all: $(NAME)
 objsdir:
 	@mkdir -p bin
 
-bin/%.o: srcs/%.c | objsdir
+bin/%.o: srcs/%.c $(DEPS) | objsdir
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $(INCLUDE) -o $@ $^
+	$(CC) $(CFLAGS) -c $(INCLUDE) -o $@ $<
 
 $(NAME): $(OBJS)
 	make -C $(MLX)
