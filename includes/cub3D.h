@@ -6,12 +6,15 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/14 18:12:39 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/21 13:44:49 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+/* ************************************************************************** */
+/*                                  INCLUDES                                  */
 
 # include "mlx.h"
 # include "mlx_int.h"
@@ -26,27 +29,21 @@
 # include <errno.h>
 # include <sys/time.h>
 
+
+/* ************************************************************************** */
+/*                                  DEFINES                                   */
+
 # define WINDOW_W 1280
 # define WINDOW_H 720
 
-# ifndef __APPLE__
-#  define ESCAPE 65307
-#  define W 119
-#  define S 115
-#  define A 97
-#  define D 100
-#  define E 101
-#  define R_ARROW 65363
-#  define L_ARROW 65361
-# else
-#  define ESCAPE 53
-#  define W 13
-#  define S 1
-#  define A 0
-#  define D 2
-#  define R_ARROW 124
-#  define L_ARROW 123
-# endif
+# define ESCAPE 65307
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define E 101
+# define R_ARROW 65363
+# define L_ARROW 65361
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -63,7 +60,12 @@
 # define SILVER 0x00C0C0C0
 # define NAVY 0x00000080
 
-# define ANIM_DELAY 25000
+# define ANIM_DELAY 2500000
+
+
+/* ************************************************************************** */
+/*                          STRUCTURES AND TYPEDEFS                           */
+
 
 enum e_direction {
 	UP,
@@ -161,6 +163,10 @@ typedef struct s_world
 	int				focus;
 }				t_world;
 
+
+/* ************************************************************************** */
+/*                            FUNCTIONS PROTOTYPES                            */
+
 int			open_file(const char *file_name);
 t_image		open_sprite(t_world *world, char *path);
 t_anim		open_anim(t_world *world, char *path);
@@ -174,6 +180,7 @@ bool		is_map(char *line);
 int			verif_map(char **map);
 int			get_start_pos(char **map, int *x, int *y);
 int			read_elem(t_world *world, int fd);
+bool		map_has_door(t_world *world);
 int			parse(t_world *world, char *file_name);
 int			init_world(int argc, char **argv, t_world *world);
 void		free_world(t_world *world);

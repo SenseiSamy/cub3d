@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 16:17:14 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/15 16:27:25 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	init_player(t_world *world)
 		rotate_cam(world, M_PI / 2);
 	else if (world->map[x][y] == 'S')
 		rotate_cam(world, -M_PI / 2);
-	else if (world->map[x][y] == 'W')
+	else if (world->map[x][y] == 'E')
 		rotate_cam(world, M_PI);
 }
 

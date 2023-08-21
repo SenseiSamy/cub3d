@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:36:23 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/14 16:37:18 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/15 15:39:58 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void	free_world(t_world *world)
 
 int	exit_cub3d(t_world *world)
 {
-	mlx_do_key_autorepeaton(world->mlx);
-	mlx_mouse_show(world->mlx, world->mlx_win);
+	if (world->mlx)
+	{
+		mlx_do_key_autorepeaton(world->mlx);
+		mlx_mouse_show(world->mlx, world->mlx_win);
+	}
 	free_world(world);
 	exit(EXIT_SUCCESS);
 }

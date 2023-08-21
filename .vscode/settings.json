@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"mlx.h": "c",
-		"mlx_int.h": "c",
-		"xlib.h": "c",
-		"mman.h": "c",
-		"xkblib.h": "c"
-	}
-}

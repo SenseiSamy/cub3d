@@ -6,11 +6,20 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 14:21:26 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/12 18:13:38 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/15 16:11:35 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	init_elems(t_world *world)
+{
+	world->northwall.type = -1;
+	world->southwall.type = -1;
+	world->eastwall.type = -1;
+	world->westwall.type = -1;
+	world->door.type = -1;
+}
 
 bool	is_elem(char *line)
 {
@@ -60,17 +69,13 @@ int	set_elem(t_world *world, char *line)
 
 int	verif_elem(t_world *world)
 {
-	if ((world->northwall.type == 0 && world->northwall.image.img == NULL)
-		|| (world->northwall.type == 1 && world->northwall.anim.frames == NULL))
+	if (world->northwall.type == -1)
 		ft_dprintf(2, "Error\nFailed to open north wall texture\n");
-	else if ((world->southwall.type == 0 && world->southwall.image.img == NULL)
-		|| (world->southwall.type == 1 && world->southwall.anim.frames == NULL))
+	else if (world->southwall.type == -1)
 		ft_dprintf(2, "Error\nFailed to open south wall texture\n");
-	else if ((world->westwall.type == 0 && world->westwall.image.img == NULL)
-		|| (world->westwall.type == 1 && world->westwall.anim.frames == NULL))
+	else if (world->westwall.type == -1)
 		ft_dprintf(2, "Error\nFailed to open west wall texture\n");
-	else if ((world->eastwall.type == 0 && world->eastwall.image.img == NULL)
-		|| (world->eastwall.type == 1 && world->eastwall.anim.frames == NULL))
+	else if (world->eastwall.type == -1)
 		ft_dprintf(2, "Error\nFailed to open east wall texture\n");
 	else if (world->floor_color == -1)
 		ft_dprintf(2, "Error\nFailed to get the floor color\n");
@@ -85,6 +90,7 @@ int	read_elem(t_world *world, int fd)
 {
 	char	*line;
 
+	init_elems(world);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -103,8 +109,8 @@ int	read_elem(t_world *world, int fd)
 		line = get_next_line(fd);
 	}
 	if (verif_elem(world) == EXIT_FAILURE)
-		return (free_world(world), free(line), EXIT_FAILURE);
+		return (get_next_line(-1), free(line), EXIT_FAILURE);
 	if (read_map(world, fd, line) == EXIT_FAILURE)
-		return (free_world(world), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
