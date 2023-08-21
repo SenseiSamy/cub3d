@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:36:23 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/21 14:32:56 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/21 15:09:19 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rotate_point(t_world *world, int *x, int *y)
 	double	angle;
 
 	tmp = *x;
-	angle = (atan2(world->dir.y, world->dir.x) + M_PI / 2);
+	angle = (atan2(world->dir.y, world->dir.x) + (M_PI * 0.5));
 	*x = (int)(*x * cos(angle) - *y * sin(angle));
 	*y = (int)(tmp * sin(angle) + *y * cos(angle));
 }
