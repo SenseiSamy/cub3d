@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/15 20:26:40 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/21 21:45:24 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE 0.03
+# define MOVE 5.0 * world->frametime
+# define CAM_SPEED 3.0 * world->frametime
 # define OFF_WALL 0.3
 # define MINIMAP_ZOOM 0.1
 # define MOUSE_SENSI 0.1
@@ -161,6 +162,8 @@ typedef struct s_world
 	t_minimap		minimap;
 	t_mouse			mouse;
 	int				focus;
+	struct timeval	lastframe;
+	double			frametime;
 }				t_world;
 
 

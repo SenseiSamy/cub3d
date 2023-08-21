@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/14 16:36:32 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/21 21:45:43 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	hook_key_press(t_world *world)
 		if (world->keys.right)
 			modif_position(world, RIGHT);
 		if (world->keys.rarrow)
-			rotate_cam(world, MOVE);
+			rotate_cam(world, CAM_SPEED);
 		if (world->keys.larrow)
-			rotate_cam(world, -MOVE);
+			rotate_cam(world, -CAM_SPEED);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -73,6 +73,9 @@ void	set_hooks(t_world *world)
 
 int	main_loop(t_world *world)
 {
+	world->frametime = time_passed(world, world->lastframe) / 1000000.0;
+	if (gettimeofday(&world->lastframe, NULL) == -1)
+		exit_cub3d(world);
 	hook_key_press(world);
 	tracking_mouse(world);
 	raycast(world);

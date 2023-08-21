@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/15 16:27:25 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/21 20:05:44 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,7 @@ int	init_world(int argc, char **argv, t_world *world)
 	init_player(world);
 	init_keys(world);
 	init_minimap(world);
+	if (gettimeofday(&world->lastframe, NULL) == -1)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
