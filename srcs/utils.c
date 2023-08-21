@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:36:23 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/15 15:39:58 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/21 14:32:56 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	rotate_point(t_world *world, int *x, int *y)
+{
+	int		tmp;
+	double	angle;
+
+	tmp = *x;
+	angle = (atan2(world->dir.y, world->dir.x) + M_PI / 2);
+	*x = (int)(*x * cos(angle) - *y * sin(angle));
+	*y = (int)(tmp * sin(angle) + *y * cos(angle));
+}
 
 size_t	time_passed(t_world *world, struct timeval time)
 {

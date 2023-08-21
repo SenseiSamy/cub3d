@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/21 13:44:49 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/21 14:32:52 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,4 +208,5 @@ int			can_do_comp(t_world *world, int dir, int comp);
 void		draw_minimap(t_world *world);
 int			tracking_mouse(t_world *world);
 int			mouse_changing_pos(int x, int y, t_world *world);
+void		rotate_point(t_world *world, int *x, int *y);
 #endif

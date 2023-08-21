@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:45:42 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/21 14:14:04 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/21 14:32:54 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static int	coord_in_map(t_world *world, int x, int y)
 
 static void	draw_player(t_world *world)
 {
-	int xi;
-	int yi;
-	int leny;
-	int lenx;
+	int	xi;
+	int	yi;
+	int	leny;
+	int	lenx;
 
 	leny = world->minimap.radius * MINIMAP_ZOOM ;
 	lenx = world->minimap.radius * MINIMAP_ZOOM * 1.3;
@@ -53,17 +53,6 @@ static void	draw_player(t_world *world)
 		}
 		yi++;
 	}
-}
-
-static void	rotate_point(t_world *world, int *x, int *y)
-{
-	int		tmp;
-	double	angle;
-
-	tmp = *x;
-	angle = (atan2(world->dir.y, world->dir.x) + M_PI / 2);
-	*x = (int)(*x * cos(angle) - *y * sin(angle));
-	*y = (int)(tmp * sin(angle) + *y * cos(angle));
 }
 
 static void	color_circle(t_world *world, int xi, int yi)
