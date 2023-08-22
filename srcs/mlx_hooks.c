@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/21 21:45:43 by snaji            ###   ########.fr       */
+=======
+/*   Updated: 2023/08/14 18:13:23 by wmari            ###   ########.fr       */
+>>>>>>> wmari
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +71,8 @@ void	set_hooks(t_world *world)
 	mlx_hook(world->mlx_win, DestroyNotify, NoEventMask, exit_cub3d, world);
 	mlx_hook(world->mlx_win, MotionNotify, PointerMotionMask,
 		mouse_changing_pos, world);
-	mlx_hook(world->mlx_win, EnterNotify, EnterWindowMask, change_focus, world);
-	mlx_hook(world->mlx_win, LeaveNotify, LeaveWindowMask, change_focus, world);
+	mlx_hook(world->mlx_win, FocusIn, FocusChangeMask, change_focus, world);
+	mlx_hook(world->mlx_win, FocusOut, FocusChangeMask, change_focus, world);
 }
 
 int	main_loop(t_world *world)

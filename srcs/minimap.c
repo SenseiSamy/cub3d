@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:45:42 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/14 17:36:00 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/21 14:32:54 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,25 @@ static int	coord_in_map(t_world *world, int x, int y)
 
 static void	draw_player(t_world *world)
 {
-	int	circle_radius;
 	int	xi;
 	int	yi;
+	int	leny;
+	int	lenx;
 
-	circle_radius = world->minimap.radius * MINIMAP_ZOOM * 0.8;
-	yi = -circle_radius;
-	while (yi <= circle_radius)
+	leny = world->minimap.radius * MINIMAP_ZOOM ;
+	lenx = world->minimap.radius * MINIMAP_ZOOM * 1.3;
+	yi = -leny;
+	while (yi <= leny)
 	{
-		xi = -circle_radius;
-		while (xi <= circle_radius)
+		xi = lenx - abs(yi);
+		while (xi > 0)
 		{
-			if (xi * xi + yi * yi <= circle_radius * circle_radius)
-				put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
-					world->minimap.center_y + yi, BLACK);
-			xi++;
+			put_pixel_to_img(&world->frame, world->minimap.center_x + yi,
+				world->minimap.center_y - xi + lenx, BLACK);
+			xi--;
 		}
 		yi++;
 	}
-}
-
-static void	rotate_point(t_world *world, int *x, int *y)
-{
-	int		tmp;
-	double	angle;
-
-	tmp = *x;
-	angle = -(atan2(world->dir.y, world->dir.x) + M_PI / 2);
-	*x = (int)(*x * cos(angle) - *y * sin(angle));
-	*y = (int)(tmp * sin(angle) + *y * cos(angle));
 }
 
 static void	color_circle(t_world *world, int xi, int yi)
@@ -73,25 +63,25 @@ static void	color_circle(t_world *world, int xi, int yi)
 	rotated_x = xi;
 	rotated_y = yi;
 	rotate_point(world, &rotated_x, &rotated_y);
-	if (!coord_in_map(world, (int)(world->pos.x + (xi * MINIMAP_ZOOM)),
-		(int)(world->pos.y + (yi * MINIMAP_ZOOM))))
-		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
-			world->minimap.center_y + rotated_y, NAVY);
-	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
-		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '1')
-		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
-			world->minimap.center_y + rotated_y, VIOLET);
-	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
-		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == ' ')
-		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
-			world->minimap.center_y + rotated_y, NAVY);
-	else if (world->map[(int)(world->pos.y + (yi * MINIMAP_ZOOM))]
-		[(int)(world->pos.x + (xi * MINIMAP_ZOOM))] == '2')
-		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
-			world->minimap.center_y + rotated_y, GREY);
+	if (!coord_in_map(world, (int)(world->pos.x + (rotated_x * MINIMAP_ZOOM)),
+		(int)(world->pos.y + (rotated_y * MINIMAP_ZOOM))))
+		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
+			world->minimap.center_y + yi, NAVY);
+	else if (world->map[(int)(world->pos.y + (rotated_y * MINIMAP_ZOOM))]
+		[(int)(world->pos.x + (rotated_x * MINIMAP_ZOOM))] == '1')
+		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
+			world->minimap.center_y + yi, VIOLET);
+	else if (world->map[(int)(world->pos.y + (rotated_y * MINIMAP_ZOOM))]
+		[(int)(world->pos.x + (rotated_x * MINIMAP_ZOOM))] == ' ')
+		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
+			world->minimap.center_y + yi, NAVY);
+	else if (world->map[(int)(world->pos.y + (rotated_y * MINIMAP_ZOOM))]
+		[(int)(world->pos.x + (rotated_x * MINIMAP_ZOOM))] == '2')
+		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
+			world->minimap.center_y + yi, GREY);
 	else
-		put_pixel_to_img(&world->frame, world->minimap.center_x + rotated_x,
-			world->minimap.center_y + rotated_y, SILVER);
+		put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
+			world->minimap.center_y + yi, SILVER);
 }
 
 void	draw_circle(t_world *world)

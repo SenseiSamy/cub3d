@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/21 21:45:24 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/22 17:17:49 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include <stdbool.h>
 # include <errno.h>
 # include <sys/time.h>
-
 
 /* ************************************************************************** */
 /*                                  DEFINES                                   */
@@ -63,10 +62,8 @@
 
 # define ANIM_DELAY 2500000
 
-
 /* ************************************************************************** */
 /*                          STRUCTURES AND TYPEDEFS                           */
-
 
 enum e_direction {
 	UP,
@@ -166,7 +163,6 @@ typedef struct s_world
 	double			frametime;
 }				t_world;
 
-
 /* ************************************************************************** */
 /*                            FUNCTIONS PROTOTYPES                            */
 
@@ -195,8 +191,10 @@ void		put_pixel_to_img(t_image *img, int x, int y, int color);
 int			get_pixel_from_img(t_image *img, int x, int y);
 void		clear_image(t_world *world);
 
-int		raycast(t_world *world);
+int			raycast(t_world *world);
+
 /*_________________MLX_HOOKS________________*/
+
 int			main_loop(t_world *world);
 void		set_hooks(t_world *world);
 int			hook_key_press(t_world *world);
@@ -211,4 +209,6 @@ int			can_do_comp(t_world *world, int dir, int comp);
 void		draw_minimap(t_world *world);
 int			tracking_mouse(t_world *world);
 int			mouse_changing_pos(int x, int y, t_world *world);
+void		rotate_point(t_world *world, int *x, int *y);
+
 #endif

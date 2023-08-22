@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:44:41 by wmari             #+#    #+#             */
-/*   Updated: 2023/07/21 17:19:36 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/21 15:09:21 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	tracking_mouse(t_world *world)
 {
 	if (world->focus == 0)
 	{
-		if (world->mouse.x < WINDOW_W / 2)
+		if (world->mouse.x < WINDOW_W * 0.5)
 		{
-			while (world->mouse.x++ < WINDOW_W / 2)
+			while (world->mouse.x++ < WINDOW_W * 0.5)
 				rotate_cam(world, -MOVE * MOUSE_SENSI);
 		}
 		else
 		{
-			while (world->mouse.x-- > WINDOW_W / 2)
+			while (world->mouse.x-- > WINDOW_W * 0.5)
 				rotate_cam(world, MOVE * MOUSE_SENSI);
 		}
-		world->mouse.x = WINDOW_W / 2;
-		mlx_mouse_move(world->mlx, world->mlx_win, WINDOW_W / 2, WINDOW_H / 2);
+		world->mouse.x = WINDOW_W * 0.5;
+		mlx_mouse_move(world->mlx, world->mlx_win, WINDOW_W * 0.5, WINDOW_H * 0.5);
 	}
 	return (0);
 }
