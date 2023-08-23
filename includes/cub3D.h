@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/23 11:07:40 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:27:18 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE 5.0 * world->frametime
-# define CAM_SPEED 3.0 * world->frametime
+# define MOVE 5.0
+# define CAM_SPEED 3.0
 # define OFF_WALL 0.3
 # define MINIMAP_ZOOM 0.1
-# define MOUSE_SENSI 0.02
+# define MOUSE_SENSI 0.005
 
 # define GREY 0x00808080
 # define BLACK 0x00191919
