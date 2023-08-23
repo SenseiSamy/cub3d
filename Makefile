@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snaji <snaji@student.42.fr>                +#+  +:+       +#+         #
+#    By: wmari <wmari@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/08/19 19:56:31 by snaji            ###   ########.fr        #
+#    Updated: 2023/08/23 11:59:44 by wmari            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRCS	= srcs/main.c\
 		srcs/movement.c\
 		srcs/tracking_mouse.c\
 		srcs/texture.c\
-		srcs/open_anim.c
+		srcs/open_anim.c\
+		srcs/collision_utils.c
 		
 OBJS	= $(patsubst srcs/%.c, bin/%.o, $(SRCS))
 DEPS	= includes/cub3D.h includes/raycast.h

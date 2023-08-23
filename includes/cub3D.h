@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/23 11:27:18 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:14:18 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@
 
 # define MOVE 5.0
 # define CAM_SPEED 3.0
-# define OFF_WALL 0.3
+# define OFF_WALL 0.2
 # define MINIMAP_ZOOM 0.1
-# define MOUSE_SENSI 0.005
+# define MOUSE_SENSI 0.05
 
 # define GREY 0x00808080
 # define BLACK 0x00191919
@@ -212,5 +212,6 @@ void		color_circle(t_world *world, int xi, int yi);
 int			tracking_mouse(t_world *world);
 int			mouse_changing_pos(int x, int y, t_world *world);
 void		rotate_point(t_world *world, int *x, int *y);
+int			can_do_move(t_world *world, int x, int y, int comp);
 
 #endif
