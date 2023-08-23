@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:54:16 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/15 16:19:01 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:13:17 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	is_map(char *line)
 	{
 		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && line[i]
 			!= 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
-			&& line[i] != '2' && line[i] != '3')
+			&& line[i] != '2')
 			return (false);
 		++i;
 	}

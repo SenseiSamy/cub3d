@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 18:02:06 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/11 16:00:07 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:54:20 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	parse(t_world *world, char *file_name)
 		return (EXIT_FAILURE);
 	if (read_elem(world, fd) == EXIT_FAILURE)
 	{
+		get_next_line(-1);
 		close(fd);
 		return (EXIT_FAILURE);
 	}

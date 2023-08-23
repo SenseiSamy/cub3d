@@ -6,11 +6,13 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 14:21:26 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/15 16:11:35 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:59:15 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+#define ELEM_ERR "Error\nFailed to get element in this line: '%s'\n"
 
 static void	init_elems(t_world *world)
 {
@@ -46,7 +48,7 @@ int	set_elem(t_world *world, char *line)
 	if (split == NULL)
 		return (ft_dprintf(2, "Error\nMalloc failed\n"), EXIT_FAILURE);
 	if (split[0] == NULL || split[1] == NULL || split[2] != NULL)
-		return (EXIT_FAILURE);
+		return (ft_dprintf(2, ELEM_ERR, line), ft_freearray((void **)split), 1);
 	if (ft_strncmp(split[0], "NO", 3) == 0)
 		world->northwall = open_texture(world, split[1]);
 	else if (ft_strncmp(split[0], "SO", 3) == 0)
@@ -62,8 +64,7 @@ int	set_elem(t_world *world, char *line)
 	else if (ft_strncmp(split[0], "C", 2) == 0)
 		world->ceiling_color = get_color(split[1]);
 	else
-		return (ft_dprintf(2, "Error\nFailed to get element in this line: "
-				"'%s'\n", line), ft_freearray((void **)split), EXIT_FAILURE);
+		return (ft_dprintf(2, ELEM_ERR, line), ft_freearray((void **)split), 2);
 	return (ft_freearray((void **)split), EXIT_SUCCESS);
 }
 
@@ -109,7 +110,7 @@ int	read_elem(t_world *world, int fd)
 		line = get_next_line(fd);
 	}
 	if (verif_elem(world) == EXIT_FAILURE)
-		return (get_next_line(-1), free(line), EXIT_FAILURE);
+		return (free(line), EXIT_FAILURE);
 	if (read_map(world, fd, line) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

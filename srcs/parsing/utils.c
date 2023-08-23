@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:54:10 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/15 16:16:05 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:41:38 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	get_color(char *str)
 		return (-1);
 	if (split[0] == NULL || split[1] == NULL || split[2] == NULL
 		|| split[3] != NULL)
-		return (-1);
+		return (ft_freearray((void **)split), -1);
+	if (ft_atoi(split[0]) > 255 || ft_atoi(split[1]) > 255
+		|| ft_atoi(split[2]) > 255)
+		return (ft_freearray((void **)split), -1);
 	color = rgb(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]));
 	ft_freearray((void **)split);
 	return (color);
