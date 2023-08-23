@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/23 13:52:33 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/23 13:57:01 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include "libft.h"
 # include <stdbool.h>
 # include <errno.h>
-
 
 /* ************************************************************************** */
 /*                                  DEFINES                                   */
@@ -60,10 +59,8 @@
 
 # define ANIM_DELAY 2500000
 
-
 /* ************************************************************************** */
 /*                          STRUCTURES AND TYPEDEFS                           */
-
 
 enum e_direction {
 	UP,
@@ -126,7 +123,6 @@ typedef struct s_world
 	t_keyboard		keys;
 }				t_world;
 
-
 /* ************************************************************************** */
 /*                            FUNCTIONS PROTOTYPES                            */
 
@@ -145,13 +141,13 @@ int			init_world(int argc, char **argv, t_world *world);
 void		free_world(t_world *world);
 int			exit_cub3d(t_world *world);
 void		rotate_cam(t_world *world, double value);
-
 void		put_pixel_to_img(t_image *img, int x, int y, int color);
 int			get_pixel_from_img(t_image *img, int x, int y);
 void		clear_image(t_world *world);
+int			raycast(t_world *world);
 
-int		raycast(t_world *world);
 /*_________________MLX_HOOKS________________*/
+
 int			main_loop(t_world *world);
 void		set_hooks(t_world *world);
 int			hook_key_press(t_world *world);
