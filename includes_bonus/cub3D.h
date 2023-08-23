@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/19 19:46:43 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:14:18 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "libft.h"
 # include <stdbool.h>
 # include <errno.h>
-
+# include <sys/time.h>
 
 /* ************************************************************************** */
 /*                                  DEFINES                                   */
@@ -40,6 +40,7 @@
 # define S 115
 # define A 97
 # define D 100
+# define E 101
 # define R_ARROW 65363
 # define L_ARROW 65361
 
@@ -47,10 +48,11 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE 0.03
-# define OFF_WALL 0.3
+# define MOVE 5.0
+# define CAM_SPEED 3.0
+# define OFF_WALL 0.2
 # define MINIMAP_ZOOM 0.1
-# define MOUSE_SENSI 0.1
+# define MOUSE_SENSI 0.05
 
 # define GREY 0x00808080
 # define BLACK 0x00191919
@@ -60,10 +62,8 @@
 
 # define ANIM_DELAY 2500000
 
-
 /* ************************************************************************** */
 /*                          STRUCTURES AND TYPEDEFS                           */
-
 
 enum e_direction {
 	UP,
@@ -106,14 +106,46 @@ typedef struct s_image
 	int		h;
 }				t_image;
 
+typedef struct s_anim
+{
+	t_image			*frames;
+	int				nb_frames;
+	int				current_frame;
+	struct timeval	frame_time;
+}				t_anim;
+
+typedef struct s_texture
+{
+	int		type;
+	union
+	{
+		t_image	image;
+		t_anim	anim;
+	};
+}				t_texture;
+
+typedef struct s_minimap
+{
+	int	center_x;
+	int	center_y;
+	int	radius;
+}				t_minimap;
+
+typedef struct s_mouse
+{
+	int	x;
+	int	y;
+}				t_mouse;
+
 typedef struct s_world
 {
 	void			*mlx;
 	void			*mlx_win;
-	t_image			northwall;
-	t_image			southwall;
-	t_image			eastwall;
-	t_image			westwall;
+	t_texture		northwall;
+	t_texture		southwall;
+	t_texture		eastwall;
+	t_texture		westwall;
+	t_texture		door;
 	int				floor_color;
 	int				ceiling_color;
 	int				width;
@@ -124,14 +156,22 @@ typedef struct s_world
 	t_vector		plane;
 	t_image			frame;
 	t_keyboard		keys;
+	t_minimap		minimap;
+	t_mouse			mouse;
+	int				focus;
+	struct timeval	lastframe;
+	double			frametime;
 }				t_world;
-
 
 /* ************************************************************************** */
 /*                            FUNCTIONS PROTOTYPES                            */
 
 int			open_file(const char *file_name);
 t_image		open_sprite(t_world *world, char *path);
+t_anim		open_anim(t_world *world, char *path);
+void		free_anim(t_world *world, t_anim *anim);
+t_texture	open_texture(t_world *world, char *path);
+void		free_texture(t_world *world, t_texture *texture);
 int			get_color(char *str);
 int			rgb(int r, int g, int b);
 int			read_map(t_world *world, int fd, char *line);
@@ -145,13 +185,16 @@ int			init_world(int argc, char **argv, t_world *world);
 void		free_world(t_world *world);
 int			exit_cub3d(t_world *world);
 void		rotate_cam(t_world *world, double value);
+size_t		time_passed(t_world *world, struct timeval time);
 
 void		put_pixel_to_img(t_image *img, int x, int y, int color);
 int			get_pixel_from_img(t_image *img, int x, int y);
 void		clear_image(t_world *world);
 
-int		raycast(t_world *world);
+int			raycast(t_world *world);
+
 /*_________________MLX_HOOKS________________*/
+
 int			main_loop(t_world *world);
 void		set_hooks(t_world *world);
 int			hook_key_press(t_world *world);
@@ -161,5 +204,14 @@ int			keys_is_not_pressed(t_world *world);
 int			can_move_in_dir(t_world *world, int dir);
 void		modif_position(t_world *world, int dir);
 void		rotate_cam(t_world *world, double value);
+void		door_use(t_world *world);
 int			can_do_comp(t_world *world, int dir, int comp);
+void		draw_minimap(t_world *world);
+void		draw_circle(t_world *world);
+void		color_circle(t_world *world, int xi, int yi);
+int			tracking_mouse(t_world *world);
+int			mouse_changing_pos(int x, int y, t_world *world);
+void		rotate_point(t_world *world, int *x, int *y);
+int			can_do_move(t_world *world, int x, int y, int comp);
+
 #endif

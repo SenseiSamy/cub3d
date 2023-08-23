@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:21:01 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/23 12:23:04 by snaji            ###   ########.fr       */
+/*   Created: 2023/06/25 18:02:06 by snaji             #+#    #+#             */
+/*   Updated: 2023/08/23 11:54:20 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char **argv)
+int	parse(t_world *world, char *file_name)
 {
-	t_world	world;
+	int	fd;
 
-	if (init_world(argc, argv, &world) == EXIT_FAILURE)
-		exit_cub3d(&world);
-	raycast(&world);
-	set_hooks(&world);
-	mlx_loop_hook(world.mlx, main_loop, &world);
-	mlx_loop(world.mlx);
-	return (0);
+	fd = open_file(file_name);
+	if (fd == -1)
+		return (EXIT_FAILURE);
+	if (read_elem(world, fd) == EXIT_FAILURE)
+	{
+		get_next_line(-1);
+		close(fd);
+		return (EXIT_FAILURE);
+	}
+	close(fd);
+	return (EXIT_SUCCESS);
 }

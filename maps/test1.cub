@@ -1,9 +1,9 @@
- NO north.xpm
- SO south.xpm
- WE west.xpm
- EA east.xpm
+ NO assets/north.xpm
+ SO assets/south.xpm
+ WE assets/west.xpm
+ EA assets/east.xpm
 
- F 50,96565650,168
+ F 50,150,168
  C 189,56,207
 
 111

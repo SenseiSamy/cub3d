@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:54:16 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/23 12:56:27 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:36:30 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ bool	is_map(char *line)
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && line[i]
-			!= 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
+			!= 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
+			&& line[i] != '2')
 			return (false);
 		++i;
 	}
@@ -111,5 +112,8 @@ int	read_map(t_world *world, int fd, char *line)
 		return (EXIT_FAILURE);
 	if (verif_map(world->map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	if (map_has_door(world) && world->door.type == -1)
+		return (ft_dprintf(2, "Error\nFailed to open the door texture\n"),
+			EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

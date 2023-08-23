@@ -6,24 +6,11 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:18:07 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/19 19:26:00 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/11 16:33:13 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-t_image	open_sprite(t_world *world, char *path)
-{
-	t_image	sprite;
-
-	ft_bzero(&sprite, sizeof (sprite));
-	sprite.img = mlx_xpm_file_to_image(world->mlx, path, &sprite.w,
-			&sprite.h);
-	if (sprite.img != NULL)
-		sprite.addr = mlx_get_data_addr(sprite.img, &sprite.bits_per_pixel,
-				&sprite.line_length, &sprite.endian);
-	return (sprite);
-}
 
 void	put_pixel_to_img(t_image *img, int x, int y, int color)
 {
