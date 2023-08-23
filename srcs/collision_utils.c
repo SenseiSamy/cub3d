@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:59:11 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/23 12:16:19 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:20:55 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	can_do_move(t_world *world, int x, int y, int comp)
 
 	if (comp == X)
 	{
-		new_y = (int)(world->pos.y + OFF_WALL); 
+		new_y = (int)(world->pos.y + OFF_WALL);
 		if (world->map[new_y][x] == '1' || world->map[new_y][x] == '2')
 			return (0);
 		new_y = (int)(world->pos.y - OFF_WALL);
