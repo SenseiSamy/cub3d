@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:54:16 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/23 12:13:17 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:36:30 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	read_map(t_world *world, int fd, char *line)
 		ft_strrepl(line, '\n', '\0');
 		if (is_map(line) == false)
 			return (ft_dprintf(2, "Error\nInvalid character in map\n"),
-				EXIT_FAILURE);
+				ft_lstclear(&map, free), free(line), EXIT_FAILURE);
 		tmp = ft_lstnew(line);
 		if (tmp == NULL)
 			return (ft_dprintf(2, "Error\nMalloc failed\n"), EXIT_FAILURE);
