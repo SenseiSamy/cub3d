@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/19 19:46:43 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 13:52:33 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,4 +162,6 @@ int			can_move_in_dir(t_world *world, int dir);
 void		modif_position(t_world *world, int dir);
 void		rotate_cam(t_world *world, double value);
 int			can_do_comp(t_world *world, int dir, int comp);
+int			can_do_move(t_world *world, int x, int y, int comp);
+
 #endif

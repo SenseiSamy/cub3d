@@ -6,7 +6,7 @@
 #    By: wmari <wmari@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/08/23 13:45:08 by wmari            ###   ########.fr        #
+#    Updated: 2023/08/23 13:52:27 by wmari            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS	= srcs/main.c\
 		srcs/mlx_hook_utils.c\
 		srcs/collision.c\
 		srcs/movement.c\
+		srcs/collision_utils.c
 
 SRCS_B	= srcs_bonus/main.c\
 		srcs_bonus/mlx_hooks.c\
