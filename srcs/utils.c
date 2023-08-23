@@ -6,11 +6,37 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:36:23 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/21 15:09:19 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/23 10:58:13 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	draw_circle(t_world *world)
+{
+	int	xi;
+	int	yi;
+
+	yi = -world->minimap.radius;
+	while (yi <= world->minimap.radius)
+	{
+		xi = -world->minimap.radius;
+		while (xi <= world->minimap.radius)
+		{
+			if (xi * xi + yi * yi <= world->minimap.radius
+				* world->minimap.radius && xi * xi + yi * yi
+				>= (world->minimap.radius * world->minimap.radius)
+				- (10 * world->minimap.radius))
+				put_pixel_to_img(&world->frame, world->minimap.center_x + xi,
+					world->minimap.center_y + yi, BLACK);
+			else if (xi * xi + yi * yi <= world->minimap.radius
+				* world->minimap.radius)
+				color_circle(world, xi, yi);
+			xi++;
+		}
+		yi++;
+	}
+}
 
 void	rotate_point(t_world *world, int *x, int *y)
 {

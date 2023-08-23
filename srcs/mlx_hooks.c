@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:48 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/22 17:20:10 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:10:03 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	set_hooks(t_world *world)
 
 int	main_loop(t_world *world)
 {
-	world->frametime = time_passed(world, world->lastframe) / 1000000.0;
+	world->frametime = time_passed(world, world->lastframe) * 0.000001;
 	if (gettimeofday(&world->lastframe, NULL) == -1)
 		exit_cub3d(world);
 	hook_key_press(world);

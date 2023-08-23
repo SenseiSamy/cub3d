@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:28:37 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/22 17:17:49 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:07:40 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define CAM_SPEED 3.0 * world->frametime
 # define OFF_WALL 0.3
 # define MINIMAP_ZOOM 0.1
-# define MOUSE_SENSI 0.1
+# define MOUSE_SENSI 0.02
 
 # define GREY 0x00808080
 # define BLACK 0x00191919
@@ -207,6 +207,8 @@ void		rotate_cam(t_world *world, double value);
 void		door_use(t_world *world);
 int			can_do_comp(t_world *world, int dir, int comp);
 void		draw_minimap(t_world *world);
+void		draw_circle(t_world *world);
+void		color_circle(t_world *world, int xi, int yi);
 int			tracking_mouse(t_world *world);
 int			mouse_changing_pos(int x, int y, t_world *world);
 void		rotate_point(t_world *world, int *x, int *y);
