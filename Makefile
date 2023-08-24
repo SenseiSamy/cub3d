@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wmari <wmari@student.42.fr>                +#+  +:+       +#+         #
+#    By: snaji <snaji@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:21:26 by wmari             #+#    #+#              #
-#    Updated: 2023/08/23 13:52:27 by wmari            ###   ########.fr        #
+#    Updated: 2023/08/24 14:36:01 by snaji            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ OBJS_B	= $(patsubst srcs_bonus/%.c, bin_bon/%.o, $(SRCS_B))
 DEPS	= includes/cub3D.h includes/raycast.h
 DEPS_B	= includes_bonus/cub3D.h includes_bonus/raycast.h
 NAME	= cub3D
+NAME_B	= cub3D_bonus
 
 all: $(NAME)
 
@@ -86,10 +87,12 @@ $(NAME): $(OBJS)
 	make -C libft
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INCLUDE) $(LIB)
 
-bonus:	$(OBJS_B)
+$(NAME_B): $(OBJS_B)
 	make -C $(MLX)
 	make -C libft
-	$(CC) $(CFLAGS) $(OBJS_B) -o $(NAME) $(INCL_B) $(LIB)
+	$(CC) $(CFLAGS) $(OBJS_B) -o $(NAME_B) $(INCL_B) $(LIB)
+
+bonus: $(NAME_B)
 	
 clean:
 	make -C libft clean
@@ -99,7 +102,7 @@ clean:
 
 fclean: clean
 	make -C libft fclean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME_B)
 
 re: fclean
 	make all
