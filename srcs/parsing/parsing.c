@@ -19,6 +19,8 @@ int	parse(t_world *world, char *file_name)
 	fd = open_file(file_name);
 	if (fd == -1)
 		return (EXIT_FAILURE);
+	world->ceiling_color = -1;
+	world->floor_color = -1;
 	if (read_elem(world, fd) == EXIT_FAILURE)
 	{
 		get_next_line(-1);
