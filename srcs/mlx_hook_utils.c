@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:51:36 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/19 19:39:52 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/15 17:33:04 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	keyrelease(int keycode, t_world *world)
 		world->keys.rarrow = 0;
 	if (keycode == ESCAPE)
 		world->keys.escape = 0;
+	if (keycode == E)
+		world->keys.use = 0;
 	return (hook_key_press(world));
 }
 
@@ -47,6 +49,11 @@ int	keypresses(int keycode, t_world *world)
 		world->keys.rarrow = 1;
 	if (keycode == ESCAPE)
 		world->keys.escape = 1;
+	if (keycode == E)
+	{
+		door_use(world);
+		world->keys.use = 1;
+	}
 	return (hook_key_press(world));
 }
 
@@ -57,4 +64,27 @@ int	keys_is_not_pressed(t_world *world)
 		|| world->keys.rarrow || world->keys.use)
 		return (0);
 	return (1);
+}
+
+void	door_use(t_world *world)
+{
+	const int	mapx = (int)(world->pos.x + world->dir.x);
+	const int	mapy = (int)(world->pos.y + world->dir.y);
+	const int	ne[][2] = {{mapx + 1, mapy}, {mapx, mapy + 1}, {mapx - 1, mapy},
+	{mapx, mapy - 1}};
+	int			i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (ne[i][0] < 0 || ne[i][1] < 0 || world->map[ne[i][1]] == NULL
+			|| world->map[ne[i][1]][ne[i][0]] == '\0'
+			|| world->map[ne[i][1]][ne[i][0]] == ' ')
+			return ;
+		++i;
+	}
+	if (world->map[mapy][mapx] == '2')
+		world->map[mapy][mapx] = '3';
+	else if (world->map[mapy][mapx] == '3')
+		world->map[mapy][mapx] = '2';
 }

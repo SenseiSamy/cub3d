@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:28:21 by snaji             #+#    #+#             */
-/*   Updated: 2023/08/19 19:40:07 by snaji            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:58:27 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	raycast(t_world *world)
 	{
 		init_values(&r, world, x);
 		dda(world, &r);
-		texture(&r, world, x);
+		texture(&r, world, x, world->map[r.map_y][r.map_x]);
 		++x;
 	}
 	mlx_put_image_to_window(world->mlx, world->mlx_win, world->frame.img, 0, 0);

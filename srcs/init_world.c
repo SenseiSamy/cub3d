@@ -6,7 +6,7 @@
 /*   By: snaji <snaji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:22:52 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/19 19:29:36 by snaji            ###   ########.fr       */
+/*   Updated: 2023/08/21 20:05:44 by snaji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ static void	init_keys(t_world *world)
 	world->keys.left = 0;
 	world->keys.rarrow = 0;
 	world->keys.right = 0;
+	world->mouse.x = WINDOW_W / 2;
+	world->mouse.y = WINDOW_H / 2;
+	world->focus = 1;
 }
 
 static int	init_mlx(t_world *world)
@@ -64,6 +67,16 @@ static void	init_player(t_world *world)
 		rotate_cam(world, M_PI);
 }
 
+static void	init_minimap(t_world *world)
+{
+	world->minimap.center_x = WINDOW_W / 8;
+	world->minimap.center_y = WINDOW_H * 5 / 6;
+	if (world->minimap.center_x < world->minimap.center_y)
+		world->minimap.radius = world->minimap.center_x / 2;
+	else
+		world->minimap.radius = world->minimap.center_y / 2;
+}
+
 int	init_world(int argc, char **argv, t_world *world)
 {
 	ft_bzero(world, sizeof (*world));
@@ -77,5 +90,8 @@ int	init_world(int argc, char **argv, t_world *world)
 		return (EXIT_FAILURE);
 	init_player(world);
 	init_keys(world);
+	init_minimap(world);
+	if (gettimeofday(&world->lastframe, NULL) == -1)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

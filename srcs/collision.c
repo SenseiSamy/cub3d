@@ -6,7 +6,7 @@
 /*   By: wmari <wmari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:43:13 by wmari             #+#    #+#             */
-/*   Updated: 2023/08/23 13:52:31 by wmari            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:15:39 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 static int	comp_up(t_world *world, int comp, int new_x, int new_y)
 {
+	const double	move = MOVE * world->frametime;
+
 	if (comp == X)
 	{
 		if (world->dir.x < 0.0)
-			new_x = (int)(world->pos.x + (world->dir.x * MOVE) - OFF_WALL);
+			new_x = (int)(world->pos.x + (world->dir.x * move) - OFF_WALL);
 		else
-			new_x = (int)(world->pos.x + (world->dir.x * MOVE) + OFF_WALL);
+			new_x = (int)(world->pos.x + (world->dir.x * move) + OFF_WALL);
 		new_y = (int)(world->pos.y);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
@@ -27,21 +29,23 @@ static int	comp_up(t_world *world, int comp, int new_x, int new_y)
 	{
 		new_x = (int)(world->pos.x);
 		if (world->dir.y < 0.0)
-			new_y = (int)(world->pos.y + (world->dir.y * MOVE) - OFF_WALL);
+			new_y = (int)(world->pos.y + (world->dir.y * move) - OFF_WALL);
 		else
-			new_y = (int)(world->pos.y + (world->dir.y * MOVE) + OFF_WALL);
+			new_y = (int)(world->pos.y + (world->dir.y * move) + OFF_WALL);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
 }
 
 static int	comp_down(t_world *world, int comp, int new_x, int new_y)
 {
+	const double	move = MOVE * world->frametime;
+
 	if (comp == X)
 	{
 		if (world->dir.x < 0.0)
-			new_x = (int)(world->pos.x - (world->dir.x * MOVE) + OFF_WALL);
+			new_x = (int)(world->pos.x - (world->dir.x * move) + OFF_WALL);
 		else
-			new_x = (int)(world->pos.x - (world->dir.x * MOVE) - OFF_WALL);
+			new_x = (int)(world->pos.x - (world->dir.x * move) - OFF_WALL);
 		new_y = (int)(world->pos.y);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
@@ -49,21 +53,23 @@ static int	comp_down(t_world *world, int comp, int new_x, int new_y)
 	{
 		new_x = (int)(world->pos.x);
 		if (world->dir.y < 0.0)
-			new_y = (int)(world->pos.y - (world->dir.y * MOVE) + OFF_WALL);
+			new_y = (int)(world->pos.y - (world->dir.y * move) + OFF_WALL);
 		else
-			new_y = (int)(world->pos.y - (world->dir.y * MOVE) - OFF_WALL);
+			new_y = (int)(world->pos.y - (world->dir.y * move) - OFF_WALL);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
 }
 
 static int	comp_left(t_world *world, int comp, int new_x, int new_y)
 {
+	const double	move = MOVE * world->frametime;
+
 	if (comp == X)
 	{
 		if (world->plane.x < 0.0)
-			new_x = (int)(world->pos.x + (world->plane.x * MOVE) - OFF_WALL);
+			new_x = (int)(world->pos.x + (world->plane.x * move) - OFF_WALL);
 		else
-			new_x = (int)(world->pos.x + (world->plane.x * MOVE) + OFF_WALL);
+			new_x = (int)(world->pos.x + (world->plane.x * move) + OFF_WALL);
 		new_y = (int)(world->pos.y);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
@@ -71,21 +77,23 @@ static int	comp_left(t_world *world, int comp, int new_x, int new_y)
 	{
 		new_x = (int)(world->pos.x);
 		if (world->plane.y < 0.0)
-			new_y = (int)(world->pos.y + (world->plane.y * MOVE) - OFF_WALL);
+			new_y = (int)(world->pos.y + (world->plane.y * move) - OFF_WALL);
 		else
-			new_y = (int)(world->pos.y + (world->plane.y * MOVE) + OFF_WALL);
+			new_y = (int)(world->pos.y + (world->plane.y * move) + OFF_WALL);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
 }
 
 static int	comp_right(t_world *world, int comp, int new_x, int new_y)
 {
+	const double	move = MOVE * world->frametime;
+
 	if (comp == X)
 	{
 		if (world->plane.x < 0.0)
-			new_x = (int)(world->pos.x - (world->plane.x * MOVE) + OFF_WALL);
+			new_x = (int)(world->pos.x - (world->plane.x * move) + OFF_WALL);
 		else
-			new_x = (int)(world->pos.x - (world->plane.x * MOVE) - OFF_WALL);
+			new_x = (int)(world->pos.x - (world->plane.x * move) - OFF_WALL);
 		new_y = (int)(world->pos.y);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
@@ -93,9 +101,9 @@ static int	comp_right(t_world *world, int comp, int new_x, int new_y)
 	{
 		new_x = (int)(world->pos.x);
 		if (world->plane.y < 0.0)
-			new_y = (int)(world->pos.y - (world->plane.y * MOVE) + OFF_WALL);
+			new_y = (int)(world->pos.y - (world->plane.y * move) + OFF_WALL);
 		else
-			new_y = (int)(world->pos.y - (world->plane.y * MOVE) - OFF_WALL);
+			new_y = (int)(world->pos.y - (world->plane.y * move) - OFF_WALL);
 		return (can_do_move(world, new_x, new_y, comp));
 	}
 }
